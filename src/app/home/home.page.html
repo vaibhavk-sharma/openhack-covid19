@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="success">
+    <ion-title size="large" color="light">
+      <strong>Welcome to digitized community</strong>
+      <ion-icon size="large" name="people-sharp"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<ion-slides>
+  <ion-slide>
+    <div class="slide">
+      <ion-card>
+        <ion-card-title>
+          <img src="../../assets/Images/tech.jpg"/>
+        </ion-card-title>
+
+        <ion-card-content>
+          <strong>DIGITIZED COMMUNITY</strong>
+          <p>Digitizing daily life & Connecting people..!!</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-slide>
+
+  <ion-slide>
+    <div class="slide">
+        <!-- A button for registering new user -->
+        <section>
+          <ion-button size="large" shape="round" fill="outline">
+            <ion-icon name="person-add-sharp"></ion-icon>
+            &nbsp;
+            REGISTER 
+            </ion-button>
+        </section>
+        <br/>
+    <p>OR</p>
+
+    <!-- A button for login  alredy registered user -->
+      <section>
+        <ion-button size="large" shape="round" color="tertiary">LOGIN
+          &nbsp;
+          <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+        </ion-button>
+      </section>
+    </div>
+  </ion-slide>
+</ion-slides>
+        
+    
+</ion-content>
