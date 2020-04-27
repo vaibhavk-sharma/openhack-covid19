@@ -1,0 +1,57 @@
+OpenHack2020
+
+https://www.callicoder.com/node-js-express-mongodb-restful-crud-api-tutorial/
+
+https://cloud.ibm.com/docs/node?topic=nodejs-cloudant
+
+
+Registration - Community Registration, User Registration
+	
+User - It’s an entity coming from front end 
+		- UserId
+		- First Name
+		- Last Name
+		- Email
+		- Address				
+		- Phone Number - Optional
+		- Type (Supplier, Resident)
+		- SubType (Grocery, Service Provider, Vegetables)
+		- Items [Milk, Eggs, Bread, Fruits]
+		- Community Id
+	
+Following are documents in DB
+	
+	Admin - 
+		- Admin Id
+		- First Name
+		- Last Name	
+
+	CommunityDocument
+		- Community Id
+		-  Name
+		- Address
+		- Admin []
+
+	
+	SupplierDocument
+		- Supplier Id/UserId 
+		- SubType
+		- First Name
+		- Last Name
+		- Email
+		- Address				
+		- Phone Number - Optional
+		- Items [{name:, quantity:, PricePerItem:}]
+		- CommunityId
+			
+
+	ResidentsDocument
+		- ResidentID/UserId
+		- First Name
+		- Last Name
+		- Email
+		- Address				
+		- Phone Number - Optional
+ 		- Items [{name:, quantity:}]
+		- CommunityId
+		
