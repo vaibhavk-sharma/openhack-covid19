@@ -39,10 +39,19 @@
 
     <!-- A button for login  alredy registered user -->
       <section>
-        <ion-button size="large" shape="round" color="tertiary">LOGIN
+        <ion-button size="large" shape="round" color="tertiary" (click)="doGoogleLogin()">LOGIN
           &nbsp;
           <ion-icon name="arrow-forward-circle-outline"></ion-icon>
         </ion-button>
+      </section>
+
+      <section>
+        <div *ngIf="user">
+          {{user}}
+          {{user.displayName}}
+          {{user.email}}
+          {{user.imageUrl}}
+        </div>
       </section>
     </div>
   </ion-slide>
