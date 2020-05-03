@@ -172,7 +172,7 @@ function create(type, name, description, quantity, location, contact, userID) {
                 console.log('Error occurred: ' + err.message, 'create()');
                 reject(err);
             } else {
-                resolve({ data: { createdId: result.id, createdRevId: result.rev }, statusCode: 201 });
+                resolve({ _Id: result.id, _revId: result.rev }, statusCode: 201 });
             }
         });
     });

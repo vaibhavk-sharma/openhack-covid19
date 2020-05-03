@@ -26,20 +26,10 @@
 
   <ion-slide>
     <div class="slide">
-        <!-- A button for registering new user -->
-        <section>
-          <ion-button size="large" shape="round" fill="outline">
-            <ion-icon name="person-add-sharp"></ion-icon>
-            &nbsp;
-            REGISTER 
-            </ion-button>
-        </section>
-        <br/>
-    <p>OR</p>
 
     <!-- A button for login  alredy registered user -->
       <section>
-        <ion-button size="large" shape="round" color="tertiary" (click)="doGoogleLogin()">LOGIN
+        <ion-button size="large" shape="round" color="tertiary" (click)="doGoogleLogin()">LOGIN With Google
           &nbsp;
           <ion-icon name="arrow-forward-circle-outline"></ion-icon>
         </ion-button>
@@ -50,7 +40,6 @@
           {{user}}
           {{user.displayName}}
           {{user.email}}
-          {{user.imageUrl}}
         </div>
       </section>
     </div>

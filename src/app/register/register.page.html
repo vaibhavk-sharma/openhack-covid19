@@ -1,9 +1,91 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Create your Account</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content style="overflow-y: auto;">
+  <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
+    <ion-item>
+      <ion-label position="floating">First Name</ion-label>
+      <ion-input mode="ios" formControlName="firstName" type="text"></ion-input>
+    </ion-item>
+    <span
+      *ngIf="isSubmitted && registerForm.controls.firstName.errors && registerForm.controls.firstName.errors.required"
+      class="error-message">
+      <p>Please enter a First Name.</p>
+    </span>
+    <ion-item>
+      <ion-label position="floating">Last Name</ion-label>
+      <ion-input mode="ios" formControlName="lastName" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Address</ion-label>
+      <ion-input mode="ios" formControlName="address" type="text"></ion-input>
+    </ion-item>
+    <span *ngIf="isSubmitted && registerForm.controls.address.errors && registerForm.controls.address.errors.required"
+      class="error-message">
+      <p>Please enter a valid address.</p>
+    </span>
+    <ion-item>
+      <ion-label position="floating">Phone Number</ion-label>
+      <ion-input mode="ios" formControlName="phoneNumber" type="tel" pattern="[0-9]{10}"></ion-input>
+    </ion-item>
+    <span *ngIf="isSubmitted && registerForm.controls.address.errors && registerForm.controls.address.errors.required"
+      class="error-message">
+      <p>Please enter a Phone Number.</p>
+    </span>
+    <span *ngIf="isSubmitted && registerForm.controls.address.errors && registerForm.controls.address.errors.pattern"
+      class="error-message">
+      <p>Please enter a valid Phone Number.</p>
+    </span>
+    <ion-radio-group #userType formControlName="type" value="Resident">
+      <ion-list-header>
+        <ion-label>Register As</ion-label>
+      </ion-list-header>
+      <div style="display:flex">
+        <ion-item lines="none">
+          <ion-label>Resident</ion-label>
+          <ion-radio mode="ios" slot="start" value="Resident"></ion-radio>
+        </ion-item>
 
-<ion-content>
+        <ion-item lines="none">
+          <ion-label>Supplier</ion-label>
+          <ion-radio mode="ios" slot="start" value="Supplier"></ion-radio>
+        </ion-item>
+      </div>
 
+    </ion-radio-group>
+    <div *ngIf="userType && userType.value == 'Supplier'">
+      <ion-radio-group formControlName="subType" value="Grocery">
+        <ion-list-header>
+          <ion-label>Category</ion-label>
+        </ion-list-header>
+
+        <ion-item lines="none">
+          <ion-label>Grocery</ion-label>
+          <ion-radio mode="ios" slot="start" value="Grocery"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>Vegetables</ion-label>
+          <ion-radio mode="ios" slot="start" value="Vegetables"></ion-radio>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>Services</ion-label>
+          <ion-radio mode="ios" slot="start" value="Services"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </div>
+    <ion-row class="btn--register">
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block">
+          <ion-icon slot="start" name="business-outline"></ion-icon>
+          <p>Register</p>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>

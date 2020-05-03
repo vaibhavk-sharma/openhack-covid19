@@ -23,12 +23,13 @@ Following are documents in DB
 	
 	Admin - 
 		- Admin Id
+		- Email
 		- First Name
 		- Last Name	
 
 	CommunityDocument
 		- Community Id
-		-  Name
+		- Name
 		- Address
 		- Admin []
 
