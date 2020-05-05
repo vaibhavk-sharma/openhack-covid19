@@ -1,9 +1,37 @@
 OpenHack2020
 
+
+steps for IBM Cloud deployment:
+
+	curl -sL https://ibm.biz/idt-installer | bash
+	ibmcloud login
+	bx dev enable
+	bx dev edit  
+	bx dev deploy
+
 https://www.callicoder.com/node-js-express-mongodb-restful-crud-api-tutorial/
 
 https://cloud.ibm.com/docs/node?topic=nodejs-cloudant
 
+https://developer.ibm.com/node/bring-application-ibm-cloud/
+
+https://github.com/jstevenperry/IBM-Developer/tree/master/Node.js/Course
+
+IBM Cloudant with Node.js Starter Kit: https://cloud.ibm.com/developer/appservice/create-app?defaultDeploymentToolchain=&defaultLanguage=NODE&env_id=ibm%3Ayp%3Aus-south&navMode=starterkits&starterKit=3f3f65c6-4a2c-3255-8e80-d2ac52ca608a
+
+Our digital community Node.js app hosted on IBM Cloud
+http://digicom.eu-gb.cf.appdomain.cloud/
+
+IBM Slack: https://app.slack.com/client/T2HPVFQDA/learning-slack
+
+IBM Cloud Hosted Apikey: 
+4N8OPjh60Z6m1brZ_zKpqgXRc4KE1MlzYC4KX6t46uXq
+
+
+
+
+
+DB Schema - Old
 
 Registration - Community Registration, User Registration
 	
@@ -23,13 +51,12 @@ Following are documents in DB
 	
 	Admin - 
 		- Admin Id
-		- Email
 		- First Name
 		- Last Name	
 
 	CommunityDocument
 		- Community Id
-		- Name
+		-  Name
 		- Address
 		- Admin []
 
@@ -55,4 +82,23 @@ Following are documents in DB
 		- Phone Number - Optional
  		- Items [{name:, quantity:}]
 		- CommunityId
+
+
+Balaji -
+Registration
+Home page…  
+
+
+
+
+		
+	
+
+
+	
+	
+	
+
+	
+	
 		

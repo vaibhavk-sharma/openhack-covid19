@@ -30,6 +30,8 @@ app.use(bodyParser.json());
 app.get('/api', apiRoutes.index);
 app.post('/api/user/findUserByEmail',apiUserRoutes.FindUserbyEmailId);
 app.post('/api/user/registerUser',apiUserRoutes.RegisterUser);
+// app.get('/', apiRoutes.index);
+// app.get('/api', apiRoutes.index);
 app.get('*', apiRoutes.index);
 /**
  * Error Handler.
