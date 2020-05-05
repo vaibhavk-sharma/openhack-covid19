@@ -1,0 +1,25 @@
+ion-toolbar {
+    --background: #0077ff;
+    --color: white;
+}
+
+ion-title {
+    font-size: 18px;
+    text-align: center;
+}
+
+.btn--register{
+    margin-top: 2em;
+}
+
+.error-message{
+    font-size: 15px;
+    color: red;
+     & > p{
+        padding-left:15px;
+    }
+}
+
+ion-icon {
+    font-size: 14px;
+}
