@@ -16,8 +16,8 @@ User - It’s an entity coming from front end
 		- Phone Number - Optional
 		- Type (Supplier, Resident)
 		- SubType (Grocery, Service Provider, Vegetables)
-		- Items [Milk, Eggs, Bread, Fruits]
 		- Community Id
+		- isAdmin
 	
 Following are documents in DB
 	

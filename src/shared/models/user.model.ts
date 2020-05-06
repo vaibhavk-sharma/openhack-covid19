@@ -7,6 +7,7 @@ export class User {
     public type: "Supplier" | "Resident";
     public subType?: "Grocery" | "ServiceProvider" | "Vegetables";
     public communityId?: any;
+    public isAdmin: boolean;
 }
 
 export class Address {

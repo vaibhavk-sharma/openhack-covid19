@@ -98,6 +98,7 @@ export class RegisterPage implements OnInit {
       if (this.isNewCommunity && newUser.communityId == undefined) {
         this.communityService.registerCommunity(communityRegisterInput).subscribe((data) => {
           newUser.communityId = data._id;
+          newUser.isAdmin = true;
           this.registerUser(newUser);
         }, (error) => {
           this.presentAlert();
