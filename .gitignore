@@ -32,3 +32,4 @@ npm-debug.log*
 package-lock.json
 /openhack-Api/node_modules
 google-services.json
+db-connction-poc/node_modules
