@@ -44,22 +44,22 @@ User - It’s an entity coming from front end
 		- Phone Number - Optional
 		- Type (Supplier, Resident)
 		- SubType (Grocery, Service Provider, Vegetables)
-		- Items [Milk, Eggs, Bread, Fruits]
 		- Community Id
+		- isAdmin
 	
 Following are documents in DB
 	
 	Admin - 
 		- Admin Id
+		- Email
 		- First Name
 		- Last Name	
 
 	CommunityDocument
-		- Community Id
-		-  Name
+		- CommunityId
+		- Name
 		- Address
-		- Admin []
-
+		- AdminEmailId
 	
 	SupplierDocument
 		- Supplier Id/UserId 
@@ -70,7 +70,7 @@ Following are documents in DB
 		- Address				
 		- Phone Number - Optional
 		- Items [{name:, quantity:, PricePerItem:}]
-		- CommunityId
+		- CommunityId[]
 			
 
 	ResidentsDocument

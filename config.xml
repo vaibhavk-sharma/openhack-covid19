@@ -99,4 +99,8 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
+    <plugin name="cordova-plugin-googleplus" spec="8.4.0">
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.596708425506-hb5amal386g9t7t10mght08hovkeo5m0" />
+        <variable name="WEB_APPLICATION_CLIENT_ID" value="596708425506-hb5amal386g9t7t10mght08hovkeo5m0.apps.googleusercontent.com" />
+    </plugin>
 </widget>
