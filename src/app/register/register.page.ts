@@ -99,6 +99,7 @@ export class RegisterPage implements OnInit {
         this.communityService.registerCommunity(communityRegisterInput).subscribe((data) => {
           newUser.communityId = data._id;
           newUser.isAdmin = true;
+          this.user.communityId= data._id;
           this.registerUser(newUser);
         }, (error) => {
           this.presentAlert();
