@@ -28,11 +28,10 @@ Following are documents in DB
 		- Last Name	
 
 	CommunityDocument
-		- Community Id
+		- CommunityId
 		- Name
 		- Address
-		- Admin []
-
+		- AdminEmailId
 	
 	SupplierDocument
 		- Supplier Id/UserId 
@@ -43,7 +42,7 @@ Following are documents in DB
 		- Address				
 		- Phone Number - Optional
 		- Items [{name:, quantity:, PricePerItem:}]
-		- CommunityId
+		- CommunityId[]
 			
 
 	ResidentsDocument

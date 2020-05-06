@@ -13,31 +13,44 @@
       <ion-input mode="ios" formControlName="firstName" type="text"></ion-input>
     </ion-item>
     <span
-      *ngIf="isSubmitted && registerForm.controls.firstName.errors && registerForm.controls.firstName.errors.required"
+      *ngIf="!registerForm.controls.firstName.pristine && registerForm.controls.firstName.errors && registerForm.controls.firstName.errors.required"
       class="error-message">
-      <p>Please enter a First Name.</p>
+      <p>First Name is required.</p>
     </span>
     <ion-item>
       <ion-label position="floating">Last Name</ion-label>
       <ion-input mode="ios" formControlName="lastName" type="text"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label position="floating">Address</ion-label>
-      <ion-input mode="ios" formControlName="address" type="text"></ion-input>
-    </ion-item>
-    <span *ngIf="isSubmitted && registerForm.controls.address.errors && registerForm.controls.address.errors.required"
+    <div formGroupName="address">
+      <ion-item>
+        <ion-label position="stacked" style="margin-bottom: 10px;font-size:1.3em;">Address</ion-label>
+        <ion-input placeholder="Street" formControlName="street"></ion-input>
+        <ion-input placeholder="City" formControlName="city"></ion-input>
+        <ion-input placeholder="State" formControlName="state"></ion-input>
+        <ion-input placeholder="Pin Code" formControlName="pinCode" pattern="[1-9][0-9]{5}"></ion-input>
+      </ion-item>
+    </div>
+    <span
+      *ngIf="registerForm.get('address') && registerForm.get('address').get('pinCode') && registerForm.get('address').get('pinCode').errors && registerForm.get('address').get('pinCode').errors.required && !registerForm.get('address').get('pinCode').pristine"
       class="error-message">
-      <p>Please enter a valid address.</p>
+      <p>Please enter a Valid Address.</p>
+    </span>
+    <span
+      *ngIf="registerForm.get('address') && registerForm.get('address').get('pinCode') && registerForm.get('address').get('pinCode').errors && registerForm.get('address').get('pinCode').errors.pattern && !registerForm.get('address').get('pinCode').pristine"
+      class="error-message">
+      <p>Please enter a Valid PinCode.</p>
     </span>
     <ion-item>
       <ion-label position="floating">Phone Number</ion-label>
       <ion-input mode="ios" formControlName="phoneNumber" type="tel" pattern="[0-9]{10}"></ion-input>
     </ion-item>
-    <span *ngIf="isSubmitted && registerForm.controls.address.errors && registerForm.controls.address.errors.required"
+    <span
+      *ngIf="!registerForm.controls.phoneNumber.pristine && registerForm.controls.phoneNumber.errors && registerForm.controls.phoneNumber.errors.required"
       class="error-message">
-      <p>Please enter a Phone Number.</p>
+      <p>Phone Number is required.</p>
     </span>
-    <span *ngIf="isSubmitted && registerForm.controls.address.errors && registerForm.controls.address.errors.pattern"
+    <span
+      *ngIf="!registerForm.controls.phoneNumber.pristine && registerForm.controls.phoneNumber.errors && registerForm.controls.phoneNumber.errors.pattern"
       class="error-message">
       <p>Please enter a valid Phone Number.</p>
     </span>
@@ -79,9 +92,44 @@
         </ion-item>
       </ion-radio-group>
     </div>
+    <div>
+      <div *ngIf="!isNewCommunity">
+        <ion-list-header>
+          <ion-label>Search Community</ion-label>
+          <span *ngIf="userType && userType.value == 'Resident'" class="spn--communityLink"
+            (click)="newCommunityClick()">New Community</span>
+        </ion-list-header>
+        <ion-item lines="none">
+          <ion-searchbar inputmode="search" placeholder="Type Name or Pincode" debounce="500" showcancelbutton=""
+            (ionChange)="filterList($event)">
+          </ion-searchbar>
+          <ion-spinner name="lines" *ngIf="showSpinner"></ion-spinner>
+        </ion-item>
+      </div>
+      <ion-item lines="none" *ngIf="communityList && communityList.length > 0">
+        <ion-select *ngIf="userType && userType.value == 'Resident'" formControlName="residentCommunity" mode="ios"
+          placeholder="Select Community" interface="popover" okText="Okay" cancelText="Dismiss">
+          <ion-select-option *ngFor="let community of communityList">{{community.name}}</ion-select-option>
+        </ion-select>
+        <ion-select multiple *ngIf="!(userType && userType.value == 'Resident')" formControlName="supplierCommunity"
+          mode="ios" placeholder="Select Community" interface="popover" okText="Okay" cancelText="Dismiss">
+          <ion-select-option *ngFor="let community of communityList">{{community.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <span
+        *ngIf="isSubmitted && (userType && userType.value == 'Resident' && !registerForm.controls.residentCommunity.pristine && registerForm.controls.residentCommunity.errors && registerForm.controls.residentCommunity.errors.required)"
+        class="error-message">
+        <p>Please select a Community.</p>
+      </span>
+      <span
+        *ngIf="isSubmitted && (!(userType && userType.value == 'Resident') && !registerForm.controls.supplierCommunity.pristine && registerForm.controls.supplierCommunity.errors && registerForm.controls.supplierCommunity.errors.required)"
+        class="error-message">
+        <p>Please select a Community.</p>
+      </span>
+    </div>
     <ion-row class="btn--register">
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block">
+        <ion-button expand="full" type="submit" Size="default" class="btn--bottom" [disabled]="!registerForm.valid">
           <ion-icon slot="start" name="business-outline"></ion-icon>
           <p>Register</p>
         </ion-button>

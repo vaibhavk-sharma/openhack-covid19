@@ -2,12 +2,18 @@ export class User {
     public firstName: string;
     public lastName?: string;
     public email: string;
-    public address: string;
+    public address: Address;
     public phoneNumber: string;
     public type: "Supplier" | "Resident";
     public subType?: "Grocery" | "ServiceProvider" | "Vegetables";
-    public items?: string[];
-    public communityId?: number;
+    public communityId?: any;
+}
+
+export class Address {
+    public street: string;
+    public city: string;
+    public state: string;
+    public pinCode: string;
 }
 
 export class NativeUserStorageInfo{

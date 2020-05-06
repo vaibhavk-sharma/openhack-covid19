@@ -33,6 +33,7 @@ exports.FindUserbyEmailId = (req, res) => {
 exports.RegisterUser = (req, res) => {
     let db = db_utlity.getDbInstance(db_constants["RESIDENTDB-USERS"]);
     let user = req.body;
+    delete user['newUser']
     db.insert(user, (err, result) => {
         if (err) {
             console.log('Error occurred: ' + err.message, 'insert failed');
