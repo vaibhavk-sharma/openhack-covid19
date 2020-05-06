@@ -208,6 +208,7 @@ export class RegisterPage implements OnInit {
         community = returnedData.data.form.value;
         this.communityList.push(community);
         this.isNewCommunity = true;
+        this.registerForm.controls.residentCommunity.setValue(community.name);
       }
     });
     return await modal.present();

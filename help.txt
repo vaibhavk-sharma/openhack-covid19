@@ -54,4 +54,5 @@ Following are documents in DB
 		- Phone Number - Optional
  		- Items [{name:, quantity:}]
 		- CommunityId
+		- isAdmin
 		
