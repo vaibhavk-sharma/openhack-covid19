@@ -18,4 +18,9 @@ export class UserService {
   registerUser(user: User): Observable<any>{
     return this.http.post(ApiRoutes.RegisterUser,user);
   }
+
+  getAllUsers(communityId: string): Observable<any> {
+    return this.http.post(ApiRoutes.GetAllUsers, { communityId: communityId });
+  }
+
 }

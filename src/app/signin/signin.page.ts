@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+// import { NavController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+// import { AdminPage } from '../admin/admin.page';
 
 @Component({
   selector: 'app-signin',
@@ -7,9 +11,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SigninPage implements OnInit {
 
-  constructor() { }
+  menu:boolean;
+  loggedInUser: any;
+  
+  constructor(private router: Router, private storage: Storage
+    // , public navCtrl: NavController
+    ) {
+    this.menu=false;
+   }
 
   ngOnInit() {
+    this.storage.get('local_community_user').then(data => {
+      this.loggedInUser = data[0];
+      console.log(JSON.stringify(this.loggedInUser))
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+    
   }
+
+  openMenu()
+  {
+    this.menu=true;
+  }
+
+  admin(){
+    // this.navCtrl.push(AdminPage, 
+    //   {incomingUser: this.loggedInUser}
+    // );
+    this.storage.set('local_community_user',this.loggedInUser)
+    this.router.navigateByUrl('admin');
+  }
+
+  logout(){
+    this.router.navigateByUrl('home')
+  }
+
+  // adminActivity(){
+    
+  // }
 
 }

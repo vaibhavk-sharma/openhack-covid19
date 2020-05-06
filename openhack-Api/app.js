@@ -29,6 +29,7 @@ app.use(bodyParser.json());
  * Api routes.
  */
 app.get('/api', apiRoutes.index);
+app.post('/api/user/getAllUsers',apiUserRoutes.GetAllUsers);
 app.post('/api/user/findUserByEmail',apiUserRoutes.FindUserbyEmailId);
 app.post('/api/user/registerUser',apiUserRoutes.RegisterUser);
 app.post('/api/community/filterCommunityBySearchTerm',apiCommunityRoutes.FilterBySearchTerm);

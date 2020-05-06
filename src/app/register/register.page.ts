@@ -9,7 +9,6 @@ import { AlertController, PopoverController } from '@ionic/angular';
 import { Community, RegisterCommunityInput } from 'src/shared/models/community.model';
 import { CommunityService } from 'src/shared/services/community.service';
 import { CommunityRegisterModal } from '../modals/community-register/community-register.modal';
-import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -36,7 +35,12 @@ export class RegisterPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.user = this.storage.get('local_community_user');
+    this.storage.get('local_community_user').then(data => {
+      this.user = data;
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
     this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', []],
@@ -84,6 +88,8 @@ export class RegisterPage implements OnInit {
       newUser.phoneNumber = this.registerForm.value.phoneNumber;
       newUser.type = this.registerForm.value.type;
       newUser.subType = this.registerForm.value.subType;
+      newUser.isAdmin = false;
+      newUser.isUserVerified=false;
       if (this.registerForm.value.type == "Resident") {
         var community = this.communityList.filter(x => x.name === this.registerForm.value.residentCommunity);
         if (this.isNewCommunity && community[0] && community[0].communityId == undefined) {
@@ -102,6 +108,7 @@ export class RegisterPage implements OnInit {
         this.communityService.registerCommunity(communityRegisterInput).subscribe((data) => {
           newUser.communityId = data._id;
           newUser.isAdmin = true;
+          newUser.isUserVerified= true;
           this.user.communityId= data._id;
           this.registerUser(newUser);
         }, (error) => {
@@ -121,7 +128,8 @@ export class RegisterPage implements OnInit {
         this.user._id = data._id;
         this.user._revId = data._revId;
         this.storage.set('local_community_user', this.user);
-        this.router.navigate(['secured/home'])
+        console.log(JSON.stringify(this.user, null, '\t'));
+        this.router.navigateByUrl('signin');
       }
       else {
         this.presentAlert();
@@ -218,34 +226,10 @@ export class RegisterPage implements OnInit {
       }
     });
     return await modal.present();
-  constructor(private menu : MenuController, public route:Router) {
-    this.dashboard_value=false;
-    this.pendingForms=false;
-   }
 
-  ngOnInit() {
-  }
-  openFirst() {
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
-  }
-  
-  dashboard(){
-    this.pendingForms=false;
-    this.dashboard_value=true;
-    console.log("Loading DashBoard")
-
-  }
-
-
-  forms(){
-    this.dashboard_value=false;
-    this.pendingForms=true;
-
-  }
-
-  logout(){
-    this.route.navigateByUrl('/')
-  }
-
+}
+// //Navigating to homepage after registration
+// homepage(){
+//   this.router.navigateByUrl('signin')
+// }
 }

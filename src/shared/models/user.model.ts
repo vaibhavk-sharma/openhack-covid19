@@ -8,6 +8,7 @@ export class User {
     public subType?: "Grocery" | "ServiceProvider" | "Vegetables";
     public communityId?: any;
     public isAdmin: boolean;
+    public isUserVerified: boolean;
 }
 
 export class Address {
