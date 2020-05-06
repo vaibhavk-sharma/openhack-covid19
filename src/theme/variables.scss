@@ -74,6 +74,10 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  $popover-md-width: 320px;
+  $popover-ios-width: 320px;
+  $popover-wp-width: 320px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -225,4 +229,5 @@
 
     --ion-tab-bar-background: #1f1f1f;
   }
+
 }

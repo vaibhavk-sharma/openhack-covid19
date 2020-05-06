@@ -11,6 +11,8 @@ dotenv.config({ path: 'developmet.env' });
  * route handlers.
  */
 const apiRoutes = require('./api');
+const apiUserRoutes = require('./api/user');
+const apiCommunityRoutes = require('./api/community');
 
 /**
  * Create Express server.
@@ -19,15 +21,18 @@ const app = express();
 
 app.use(cors())
 app.use(bodyParser.json());
-app.use(lusca.xframe('SAMEORIGIN'));
-app.use(lusca.xssProtection(true));
-app.disable('x-powered-by');
+// app.use(lusca.xframe('SAMEORIGIN'));
+// app.use(lusca.xssProtection(true));
+// app.disable('x-powered-by');
 
 /**
  * Api routes.
  */
-app.get('/', apiRoutes.index);
 app.get('/api', apiRoutes.index);
+app.post('/api/user/findUserByEmail',apiUserRoutes.FindUserbyEmailId);
+app.post('/api/user/registerUser',apiUserRoutes.RegisterUser);
+app.post('/api/community/filterCommunityBySearchTerm',apiCommunityRoutes.FilterBySearchTerm);
+app.post('/api/community/registerCommunity',apiCommunityRoutes.RegisterCommunity);
 app.get('*', apiRoutes.index);
 /**
  * Error Handler.

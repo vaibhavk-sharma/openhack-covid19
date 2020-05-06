@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Community Registration</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+<form [formGroup]="communityForm" (ngSubmit)="register()" novalidate>
+    <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input mode="ios" formControlName="name" type="text"></ion-input>
+    </ion-item>
+    <span
+        *ngIf="!communityForm.controls.name.pristine && communityForm.controls.name.errors && communityForm.controls.name.errors.required"
+        class="error-message">
+        <p>Community Name is required.</p>
+    </span>
+    <div formGroupName="address">
+        <ion-item>
+            <ion-label position="stacked" style="margin-bottom: 10px;font-size:1.3em;">Address</ion-label>
+            <ion-input placeholder="Street" formControlName="street"></ion-input>
+            <ion-input placeholder="City" formControlName="city"></ion-input>
+            <ion-input placeholder="State" formControlName="state"></ion-input>
+            <ion-input placeholder="Pin Code" formControlName="pinCode" pattern="[1-9][0-9]{5}"></ion-input>
+        </ion-item>
+        <span
+            *ngIf="communityForm.get('address') && communityForm.get('address').get('pinCode') && communityForm.get('address').get('pinCode').errors && communityForm.get('address').get('pinCode').errors.required && !communityForm.get('address').get('pinCode').pristine"
+            class="error-message">
+            <p>Please enter a Valid Address.</p>
+        </span>
+        <span
+            *ngIf="communityForm.get('address') && communityForm.get('address').get('pinCode') && communityForm.get('address').get('pinCode').errors && communityForm.get('address').get('pinCode').errors.pattern && !communityForm.get('address').get('pinCode').pristine"
+            class="error-message">
+            <p>Please enter a Valid PinCode.</p>
+        </span>
+    </div>
+    <ion-row class="btn--register">
+        <ion-col>
+            <ion-button expand="full" type="submit" Size="default" class="btn--bottom"
+                [disabled]="!communityForm.valid">
+                <p>Add Community</p>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</form>
+</ion-content>

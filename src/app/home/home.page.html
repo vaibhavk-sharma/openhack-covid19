@@ -1,61 +1,94 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="success">
-    <ion-title size="large" color="light">
-      <strong>Welcome to digitized community</strong>
-      <ion-icon size="large" name="people-sharp"></ion-icon>
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content fullscreen class="ion-padding">
+  <ion-slides spaceBetween="-30" [options]="slideOpts">
+    <!-- ION SLIDE 1 -->
+    <ion-slide>
+      <div class="slide" >
+          <img src="../../assets/Images/connect.jpg"/>  
+          <div class="text">
+            <strong><h3>DIGITIZED COMMUNITY</h3></strong>
+            <strong><h3>HELPING IN TIMES OF NEED</h3></strong>
+            Because we aim at digitizing daily life and
+            Connecting people..!!
+          </div> 
+      </div>
+    </ion-slide>
 
-<ion-content [fullscreen]="true">
-<ion-slides>
-  <ion-slide>
-    <div class="slide">
-      <ion-card>
-        <ion-card-title>
-          <img src="../../assets/Images/tech.jpg"/>
-        </ion-card-title>
+    <!-- ION SLIDE 2 -->
+    <ion-slide>
+      <div class="slide" >
+          <img src="../../assets/Images/fresh orange.jpg"/>  
+          <div class="text">
+            <strong><h3>Connects Community and Supplier digitally to get groceries on time</h3></strong>
+          </div> 
+      </div>
+    </ion-slide>
 
-        <ion-card-content>
-          <strong>DIGITIZED COMMUNITY</strong>
-          <p>Digitizing daily life & Connecting people..!!</p>
-        </ion-card-content>
-      </ion-card>
+   <!-- ION SLIDE 3 -->
+   <ion-slide>
+    <div class="slide" >
+        <img src="../../assets/Images/covid.jpg"/>  
+        <div class="text">
+          <strong><h3>Easily purchase groceries and essentials before they go out-of-stock</h3></strong>
+        </div> 
     </div>
   </ion-slide>
 
-  <ion-slide>
-    <div class="slide">
-        <!-- A button for registering new user -->
-        <section>
-          <ion-button size="large" shape="round" fill="outline">
-            <ion-icon name="person-add-sharp"></ion-icon>
-            &nbsp;
-            REGISTER 
-            </ion-button>
-        </section>
-        <br/>
-    <p>OR</p>
+ <!-- ION SLIDE 4 -->
+ <ion-slide>
+  <div class="slide" >
+      <img src="../../assets/Images/Medical.jpg"/>  
+      <div class="text">
+        <strong><h3>Find information about local medical facilities open during lockdown</h3></strong>
+      </div> 
+  </div>
+</ion-slide>
 
-    <!-- A button for login  alredy registered user -->
-      <section>
-        <ion-button size="large" shape="round" color="tertiary" (click)="doGoogleLogin()">LOGIN
-          &nbsp;
-          <ion-icon name="arrow-forward-circle-outline"></ion-icon>
-        </ion-button>
-      </section>
+<!-- ION SLIDE 5 -->
+<ion-slide>
+  <div class="slide" >
+      <img src="../../assets/Images/newsfeed.jpg"/>  
+      <div class="text">
+        <strong><h3>Post issues, help people and talk within community using Community Newsfeed</h3></strong>
+      </div> 
+  </div>
+</ion-slide>
 
-      <section>
-        <div *ngIf="user">
-          {{user}}
-          {{user.displayName}}
-          {{user.email}}
-          {{user.imageUrl}}
-        </div>
-      </section>
-    </div>
-  </ion-slide>
-</ion-slides>
+
+<!-- ION SLIDE 5 -->
+<ion-slide>
+  <div class="slide" >
+      <img src="../../assets/Images/stay.jpg"/>  
+      <div class="text">
+        <strong><h3>STAY HOME, STAY SAFE & GO DIGITALL!!</h3></strong><br/>
+          <p style="color: darkred;">''To Get started... <br/>
+            Click below to register as new user or sign in as 
+            an existing user.''
+            </p>
+      </div> 
+  </div>
+</ion-slide>
+
+  </ion-slides>
         
-    
+<div>
+  <!-- <div> -->
+  <!-- A button for registering new user -->        
+  <ion-button (click)= "admin()" expand="block" fill="outline" color="danger">
+    <ion-icon name="person-add-sharp"></ion-icon>
+    &nbsp;
+    Get started
+  </ion-button>
+
+  <br/>
+
+  <!-- A button for login  alredy registered user -->
+  <ion-button expand="block" color="success" (click)="doGoogleLogin()">
+    Got an account? Sign in here
+    &nbsp;
+    <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+  </ion-button>
+
+</div>
 </ion-content>
+
+
