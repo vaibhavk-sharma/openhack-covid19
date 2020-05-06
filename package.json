@@ -34,8 +34,8 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.20",
-    "@angular/cli": "~8.3.23",
+    "@angular-devkit/build-angular": "^0.803.26",
+    "@angular/cli": "8.3.26",
     "@angular/compiler": "~8.2.14",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
@@ -60,7 +60,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.4.3"
+    "typescript": "^3.4.5"
   },
   "description": "An Ionic project",
   "cordova": {
@@ -75,7 +75,8 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.596708425506-hb5amal386g9t7t10mght08hovkeo5m0",
-        "WEB_APPLICATION_CLIENT_ID": "596708425506-hb5amal386g9t7t10mght08hovkeo5m0.apps.googleusercontent.com"
+        "WEB_APPLICATION_CLIENT_ID": "596708425506-hb5amal386g9t7t10mght08hovkeo5m0.apps.googleusercontent.com",
+        "PLAY_SERVICES_VERSION": "15.0.1"
       }
     },
     "platforms": [
@@ -83,3 +84,4 @@
     ]
   }
 }
+
