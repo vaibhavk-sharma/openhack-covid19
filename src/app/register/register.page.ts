@@ -9,8 +9,6 @@ import { AlertController, PopoverController } from '@ionic/angular';
 import { Community, RegisterCommunityInput } from 'src/shared/models/community.model';
 import { CommunityService } from 'src/shared/services/community.service';
 import { CommunityRegisterModal } from '../modals/community-register/community-register.modal';
-import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -218,34 +216,5 @@ export class RegisterPage implements OnInit {
       }
     });
     return await modal.present();
-  constructor(private menu : MenuController, public route:Router) {
-    this.dashboard_value=false;
-    this.pendingForms=false;
-   }
-
-  ngOnInit() {
   }
-  openFirst() {
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
-  }
-  
-  dashboard(){
-    this.pendingForms=false;
-    this.dashboard_value=true;
-    console.log("Loading DashBoard")
-
-  }
-
-
-  forms(){
-    this.dashboard_value=false;
-    this.pendingForms=true;
-
-  }
-
-  logout(){
-    this.route.navigateByUrl('/')
-  }
-
 }
