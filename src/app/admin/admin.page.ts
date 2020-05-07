@@ -69,7 +69,7 @@ export class AdminPage implements OnInit {
   }
 
   userView() {
-    this.router.navigateByUrl('signin')
+    this.router.navigateByUrl('secured-userdashboard')
   }
 
   verifyUser(person) {

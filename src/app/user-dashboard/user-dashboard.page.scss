@@ -11,6 +11,7 @@ ion-icon{
 }
 
 ion-title{
+    text-transform: capitalize;
     padding-left: 0px;
     & span{
         font-size: 14px;
@@ -23,7 +24,7 @@ ion-toolbar{
 }
 
 .icon-first-name{
-    font-size: 18px;
+    font-size: 12px;
 }
 
 .dashboard-icons{
@@ -34,4 +35,10 @@ ion-toolbar{
 .dashboard-labels{
     font-size: 10px;
     color:white;
+}
+
+ion-menu {
+    & ion-toolbar{
+    --background: #009688;
+    }
 }
