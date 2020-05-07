@@ -10,7 +10,7 @@
     </ion-button>
   </ion-buttons>
 
-  <ion-title>Hello, {{loggedInUser.firstName}}</ion-title>
+  <ion-title *ngIf="loggedInUser">Hello, {{loggedInUser.firstName}}</ion-title>
   </ion-toolbar>
 <!-- Tabs to be displayed at the bottom for user -->
 <ion-tabs>
