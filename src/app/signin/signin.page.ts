@@ -22,8 +22,12 @@ export class SigninPage implements OnInit {
 
   ngOnInit() {
     this.storage.get('local_community_user').then(data => {
-      this.loggedInUser = data[0];
-      console.log(JSON.stringify(this.loggedInUser))
+      if(data!=null)
+      {
+        this.loggedInUser = data[0];
+        console.log(JSON.stringify(this.loggedInUser))
+      }
+    
     })
     .catch(err => {
       console.log(err.message);
@@ -37,9 +41,6 @@ export class SigninPage implements OnInit {
   }
 
   admin(){
-    // this.navCtrl.push(AdminPage, 
-    //   {incomingUser: this.loggedInUser}
-    // );
     this.storage.set('local_community_user',this.loggedInUser)
     this.router.navigateByUrl('admin');
   }

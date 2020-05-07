@@ -23,4 +23,12 @@ export class UserService {
     return this.http.post(ApiRoutes.GetAllUsers, { communityId: communityId });
   }
 
+  updateUserAsVerified(user:User): Observable<any> {
+    return this.http.post(ApiRoutes.UpdateUserAsVerified, user);
+  }
+
+  deleteRejectedUser(user:User): Observable<any> {
+    return this.http.post(ApiRoutes.DeleteRejectedUser, user);
+  }
+
 }
