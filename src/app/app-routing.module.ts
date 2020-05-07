@@ -20,9 +20,10 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'signin',
-    loadChildren: () => import('./signin/signin.module').then( m => m.SigninPageModule)
-  },  {
+    path: 'secured/user-dashboard',
+    loadChildren: () => import('./user-dashboard/user-dashboard.module').then( m => m.UserDashboardPageModule)
+  },
+  {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule)
   },
