@@ -6,36 +6,31 @@
   </ion-buttons>
   <ion-buttons slot="primary">
     <ion-button>
-      <ion-icon slot="icon-only"md="ellipsis-vertical"></ion-icon>
+      <ion-icon slot="icon-only" md="ellipsis-vertical"></ion-icon>
     </ion-button>
   </ion-buttons>
 
-  <ion-title>Hello, {{loggedInUser.firstName}}</ion-title>
-  </ion-toolbar>
+  <ion-title *ngIf="loggedInUser && loggedInUser.firstName"><span>Hello, {{loggedInUser.firstName}}</span></ion-title>
+</ion-toolbar>
 <!-- Tabs to be displayed at the bottom for user -->
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-
     <ion-tab-button>
-      <ion-icon name="cart"></ion-icon>
-      <ion-label>Essentials</ion-label>
+      <ion-icon class="dashboard-icons" name="home"></ion-icon>
+      <ion-label class="dashboard-labels">Home</ion-label>
     </ion-tab-button>
-
     <ion-tab-button>
-      <ion-icon name="construct"></ion-icon>
-      <ion-label>Services</ion-label>
+      <ion-icon class="dashboard-icons" name="cart"></ion-icon>
+      <ion-label class="dashboard-labels">Essentials</ion-label>
     </ion-tab-button>
-
     <ion-tab-button>
-      <ion-icon name="chatbubbles-sharp"></ion-icon>
-      <ion-label>Forum</ion-label>
+      <ion-icon class="dashboard-icons" name="construct"></ion-icon>
+      <ion-label class="dashboard-labels">Services</ion-label>
     </ion-tab-button>
-
-    <!-- <ion-tab-button>
-      <ion-icon name="people"></ion-icon>
-      <ion-label>Admin Activity</ion-label>
-    </ion-tab-button> -->
-
+    <ion-tab-button>
+      <ion-icon class="dashboard-icons" name="chatbubbles-sharp"></ion-icon>
+      <ion-label class="dashboard-labels">Forum</ion-label>
+    </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
 
@@ -43,9 +38,16 @@
 <div *ngIf="menu">
 <ion-menu side="start" menuId="first" contentId="main">
   <ion-header>
-    <ion-toolbar color="tertiary" *ngIf="loggedInUser">
-      <ion-title>Welcome {{loggedInUser.firstName}}</ion-title>
-    </ion-toolbar>
+    <ion-toolbar color="tertiary">
+      <ion-buttons slot="start">
+        <ion-button>
+          <ion-icon name="person-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-button slot="start" *ngIf="loggedInUser" class="icon-first-name">
+          {{loggedInUser.firstName}}
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>      
   </ion-header>
   <ion-content>
     <ion-list>
@@ -64,7 +66,6 @@
     </ion-list>
   </ion-content>
 </ion-menu>
-
-
-<ion-router-outlet id="main"></ion-router-outlet>
+  <ion-menu side="start" menuId="first" contentId="main">
+  <ion-router-outlet id="main"></ion-router-outlet>
 </div>

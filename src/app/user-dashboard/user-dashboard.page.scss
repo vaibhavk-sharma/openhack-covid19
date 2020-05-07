@@ -1,6 +1,37 @@
 ion-tab-button{
-    background-color:yellowgreen;
+    background-color:#263238;
 }
+
 ion-label{
     color: white;
+}
+
+ion-icon{
+    font-size: 30px;
+}
+
+ion-title{
+    padding-left: 0px;
+    & span{
+        font-size: 14px;
+    }
+}
+
+ion-toolbar{
+    --background: #263238;
+    --color:white;
+}
+
+.icon-first-name{
+    font-size: 18px;
+}
+
+.dashboard-icons{
+    font-size: 18px;
+    color:white;
+}
+
+.dashboard-labels{
+    font-size: 10px;
+    color:white;
 }
