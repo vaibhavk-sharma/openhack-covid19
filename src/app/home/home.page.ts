@@ -67,7 +67,7 @@ export class HomePage implements OnInit {
           //this.nativeStorageUpdate(this.user);
           this.user = data;
           this.storage.set('local_community_user', this.user);
-          this.router.navigateByUrl('signin');
+          this.router.navigateByUrl('secured/user-dashboard');
         }
         else {
           this.storage.set('local_community_user', this.user);

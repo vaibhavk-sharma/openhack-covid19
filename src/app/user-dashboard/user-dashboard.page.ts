@@ -5,11 +5,11 @@ import { Storage } from '@ionic/storage';
 // import { AdminPage } from '../admin/admin.page';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.page.html',
-  styleUrls: ['./signin.page.scss'],
+  selector: 'app-user-dashboard',
+  templateUrl: './user-dashboard.page.html',
+  styleUrls: ['./user-dashboard.page.scss'],
 })
-export class SigninPage implements OnInit {
+export class UserDashboardPage implements OnInit {
 
   menu:boolean;
   loggedInUser: any;
