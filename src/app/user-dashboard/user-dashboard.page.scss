@@ -1,4 +1,5 @@
 ion-tab-button{
+    max-width: 50%;
     background-color:#263238;
 }
 
@@ -41,4 +42,9 @@ ion-menu {
     & ion-toolbar{
     --background: #009688;
     }
+}
+}
+
+ion-icon{
+    color:white
 }

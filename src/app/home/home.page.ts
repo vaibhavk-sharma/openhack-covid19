@@ -59,7 +59,7 @@ export class HomePage implements OnInit {
 
     this.userService.findUserbyEmailId(this.user.email).subscribe(
       (data) => {
-        console.log(JSON.stringify(data))
+        //console.log(JSON.stringify(data))
         if (data != null && data.length > 0) {
           // this.user._id = data[0]._id;
           // this.user._revId = data[0]._revId;
@@ -70,8 +70,8 @@ export class HomePage implements OnInit {
         }
         else {
           this.storage.set('local_community_user', this.user);
-          console.log(JSON.stringify(this.user));
-          this.router.navigateByUrl('secured/user-dashboard');
+          //console.log(JSON.stringify(this.user));
+          this.router.navigateByUrl('register');
         }
       },
       (err) => {

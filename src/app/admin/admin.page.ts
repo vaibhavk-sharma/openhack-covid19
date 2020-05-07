@@ -69,7 +69,7 @@ export class AdminPage implements OnInit {
   }
 
   userView() {
-    this.router.navigateByUrl('secured-userdashboard')
+    this.router.navigateByUrl('secured/user-dashboard')
   }
 
   verifyUser(person) {
@@ -125,7 +125,6 @@ export class AdminPage implements OnInit {
   }
 
   async handleButtonClick(messageObject : any) {
-    this.router.navigateByUrl('admin')
     let color = '';
     let duration = 2000;
     if(messageObject.status == 'accept') {
@@ -144,8 +143,10 @@ export class AdminPage implements OnInit {
       message: messageObject.message
       // showCloseButton: true
     });
-
+    
     await toast.present();
+    location.reload();
+    
   }
 
 }
