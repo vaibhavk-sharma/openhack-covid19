@@ -22,7 +22,7 @@ export class HomeTabPage implements OnInit {
       if (data != null) {
         this.loggedInUser = data;
         console.log(JSON.stringify(this.loggedInUser));
-        if(this.loggedInUser && !this.loggedInUser.isUserVerified){
+        if(this.loggedInUser && !this.loggedInUser.isUserVerified && !this.loggedInUser.isAdmin){
           this.showUserVerifiedAlert();
         }
       }

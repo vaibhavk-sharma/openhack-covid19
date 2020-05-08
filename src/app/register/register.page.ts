@@ -231,4 +231,4 @@ export class RegisterPage implements OnInit {
 // homepage(){
 //   this.router.navigateByUrl('signin')
 // }
-}
+
