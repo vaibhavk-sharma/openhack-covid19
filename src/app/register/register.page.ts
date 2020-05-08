@@ -9,7 +9,6 @@ import { AlertController, PopoverController } from '@ionic/angular';
 import { Community, RegisterCommunityInput } from 'src/shared/models/community.model';
 import { CommunityService } from 'src/shared/services/community.service';
 import { CommunityRegisterModal } from '../modals/community-register/community-register.modal';
-import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -226,7 +225,7 @@ export class RegisterPage implements OnInit {
       }
     });
     return await modal.present();
-
+  }
 }
 // //Navigating to homepage after registration
 // homepage(){
