@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
     this.route.data
       .subscribe((data: NativeUserStorageInfo) => {
         if (data != null && data.idToken != null) {
-          this.router.navigateByUrl('secured/user-dashboard');
+          this.router.navigateByUrl('user-dashboard');
         }
       });
   }
@@ -53,7 +53,7 @@ export class HomePage implements OnInit {
     //    this.user = user;
     this.user = {
       name: "George Maharis",
-      email: "George_Maharis1@infosys.com",
+      email: "George_Maharis@infosys.com",
       token: "hb5amal386g9t7t10mght08hovkeo5m0"
     };
 
@@ -64,13 +64,12 @@ export class HomePage implements OnInit {
           // this.user._id = data[0]._id;
           // this.user._revId = data[0]._revId;
           //this.nativeStorageUpdate(this.user);
-          this.user = data;
+          this.user = data[0];
           this.storage.set('local_community_user', this.user);
-          this.router.navigateByUrl('secured/user-dashboard');
+          this.router.navigateByUrl('user-dashboard');
         }
         else {
           this.storage.set('local_community_user', this.user);
-          //console.log(JSON.stringify(this.user));
           this.router.navigateByUrl('register');
         }
       },

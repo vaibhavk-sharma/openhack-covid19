@@ -1,66 +1,22 @@
-<ion-toolbar>
-  <ion-buttons slot="start">
-    <ion-menu-button auto-hide="false" (click)="openMenu()"></ion-menu-button>
-  </ion-buttons>
-  <ion-buttons slot="primary">
-    <ion-button>
-      <ion-icon slot="icon-only" name="person-circle"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-
-  <ion-title *ngIf="loggedInUser && loggedInUser.firstName"><span>Hello, {{loggedInUser.firstName}}</span></ion-title>
-</ion-toolbar>
 <!-- Tabs to be displayed at the bottom for user -->
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button>
+    <ion-tab-button tab="home">
       <ion-icon class="dashboard-icons" name="home"></ion-icon>
       <ion-label class="dashboard-labels">Home</ion-label>
     </ion-tab-button>
-    <ion-tab-button>
+    <ion-tab-button tab="essentials">
       <ion-icon class="dashboard-icons" name="cart"></ion-icon>
       <ion-label class="dashboard-labels">Essentials</ion-label>
     </ion-tab-button>
-    <ion-tab-button>
+    <ion-tab-button  tab="services">
       <ion-icon class="dashboard-icons" name="construct"></ion-icon>
       <ion-label class="dashboard-labels">Services</ion-label>
     </ion-tab-button>
-    <ion-tab-button>
+    <ion-tab-button  tab="forum">
       <ion-icon class="dashboard-icons" name="chatbubbles-sharp"></ion-icon>
       <ion-label class="dashboard-labels">Forum</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
 
-<!-- Menu bar for user -->
-<div *ngIf="menu">
-  <ion-menu side="start" menuId="first" contentId="main">
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-button>
-            <ion-icon name="person-circle-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-        <ion-title *ngIf="loggedInUser && loggedInUser.firstName"><span>{{loggedInUser.firstName}}</span></ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-item>
-          <ion-icon name="desktop" slot="start" color="warning"></ion-icon>
-          <ion-label>DashBoard</ion-label>
-        </ion-item>
-        <ion-item *ngIf="loggedInUser && loggedInUser.isAdmin" (click)="admin()">
-          <ion-icon name="person" slot="start" color="danger"></ion-icon>
-          <ion-label>Approve/Reject Users</ion-label>
-        </ion-item>
-        <ion-item (click)="logout()">
-          <ion-icon name="swap-horizontal-sharp" slot="start" color="dark"></ion-icon>
-          <ion-label>Log Out</ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-  <ion-router-outlet id="main"></ion-router-outlet>
-</div>

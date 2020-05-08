@@ -28,23 +28,20 @@ ion-toolbar{
     font-size: 12px;
 }
 
-.dashboard-icons{
-    font-size: 18px;
-    color:white;
-}
-
-.dashboard-labels{
-    font-size: 10px;
-    color:white;
-}
-
-ion-menu {
-    & ion-toolbar{
-    --background: #009688;
-    }
-}
-
 ion-icon{
     color:white
 }
 
+.menu-items{
+    margin-top:2px;
+    font-size: 14px;
+    & ion-icon {
+        font-size: 18px;
+        margin-right:10px;
+        margin-right:10px;
+    }
+
+    & ion-label{
+        padding-left:0px;
+    }
+}

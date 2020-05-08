@@ -129,7 +129,7 @@ export class RegisterPage implements OnInit {
         this.user._revId = data._revId;
         this.storage.set('local_community_user', this.user);
         console.log(JSON.stringify(this.user, null, '\t'));
-        this.router.navigateByUrl('signin');
+        this.router.navigateByUrl('user-dashboard');
       }
       else {
         this.presentAlert();

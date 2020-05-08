@@ -15,7 +15,6 @@ export class UserDashboardPage implements OnInit {
   loggedInUser: any;
   
   constructor(private router: Router, private storage: Storage
-    // , public navCtrl: NavController
     ) {
     this.menu=false;
    }
@@ -24,7 +23,7 @@ export class UserDashboardPage implements OnInit {
     this.storage.get('local_community_user').then(data => {
       if(data!=null)
       {
-        this.loggedInUser = data[0];
+        this.loggedInUser = data;
         console.log(JSON.stringify(this.loggedInUser))
       }
     
@@ -34,23 +33,5 @@ export class UserDashboardPage implements OnInit {
     });
     
   }
-
-  openMenu()
-  {
-    this.menu=true;
-  }
-
-  admin(){
-    this.storage.set('local_community_user',this.loggedInUser)
-    this.router.navigateByUrl('admin');
-  }
-
-  logout(){
-    this.router.navigateByUrl('home')
-  }
-
-  // adminActivity(){
-    
-  // }
 
 }

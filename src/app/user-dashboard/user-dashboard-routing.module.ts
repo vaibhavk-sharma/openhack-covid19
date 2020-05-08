@@ -2,11 +2,22 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { UserDashboardPage  } from './user-dashboard.page';
+import { HomeTabPage } from './home/home.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: UserDashboardPage
+    component: UserDashboardPage,
+    children: [
+      {
+        path: '',
+        component: HomeTabPage
+      },
+      {
+        path: 'home',
+        component: HomeTabPage
+      }
+    ]
   }
 ];
 
