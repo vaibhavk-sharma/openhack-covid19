@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    
+    <ion-title>
+      <ion-icon name="arrow-back" (click)="userView()"></ion-icon>
+      &nbsp; Accept/Reject Users</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="unverifiedUserList">
+    <ion-card *ngFor = "let person of unverifiedUserList">
+      <ion-card-header>
+        <ion-card-title>{{person.firstName}}, {{person.lastName}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{person.type}}<br/>
+        {{person.email}}<br/>
+        {{person.phoneNumber}}<br/>
+        {{person.address.street}},{{person.address.city}},{{person.address.state}}
+      </ion-card-content>
+
+      <ion-button color="success" expand="block" (click) = "verifyUser(person)">
+        <ion-icon name="heart"></ion-icon>
+        &nbsp;Accept User
+      </ion-button>
+  
+      <ion-button color="dark" expand="block" (click) = "rejectUser(person)">
+        <ion-icon slot="end" name="heart-dislike"></ion-icon>
+        Reject User&nbsp;
+      </ion-button>
+
+    </ion-card>
+</ion-content>

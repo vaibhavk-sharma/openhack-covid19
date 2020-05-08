@@ -34,7 +34,12 @@ export class RegisterPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.user = this.storage.get('local_community_user');
+    this.storage.get('local_community_user').then(data => {
+      this.user = data;
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
     this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', []],
@@ -82,6 +87,8 @@ export class RegisterPage implements OnInit {
       newUser.phoneNumber = this.registerForm.value.phoneNumber;
       newUser.type = this.registerForm.value.type;
       newUser.subType = this.registerForm.value.subType;
+      newUser.isAdmin = false;
+      newUser.isUserVerified=false;
       if (this.registerForm.value.type == "Resident") {
         var community = this.communityList.filter(x => x.name === this.registerForm.value.residentCommunity);
         if (this.isNewCommunity && community[0] && community[0].communityId == undefined) {
@@ -100,6 +107,7 @@ export class RegisterPage implements OnInit {
         this.communityService.registerCommunity(communityRegisterInput).subscribe((data) => {
           newUser.communityId = data._id;
           newUser.isAdmin = true;
+          newUser.isUserVerified= true;
           this.user.communityId= data._id;
           this.registerUser(newUser);
         }, (error) => {
@@ -119,7 +127,8 @@ export class RegisterPage implements OnInit {
         this.user._id = data._id;
         this.user._revId = data._revId;
         this.storage.set('local_community_user', this.user);
-        this.router.navigate(['secured/home'])
+        console.log(JSON.stringify(this.user, null, '\t'));
+        this.router.navigateByUrl('user-dashboard');
       }
       else {
         this.presentAlert();
@@ -217,4 +226,9 @@ export class RegisterPage implements OnInit {
     });
     return await modal.present();
   }
+}
+// //Navigating to homepage after registration
+// homepage(){
+//   this.router.navigateByUrl('signin')
+// }
 }

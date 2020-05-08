@@ -73,9 +73,7 @@
 <div>
   <!-- <div> -->
   <!-- A button for registering new user -->        
-  <ion-button (click)= "admin()" expand="block" fill="outline" color="danger">
-    <ion-icon name="person-add-sharp"></ion-icon>
-    &nbsp;
+  <ion-button expand="block" fill="outline" color="danger">
     Get started
   </ion-button>
 
@@ -83,9 +81,9 @@
 
   <!-- A button for login  alredy registered user -->
   <ion-button expand="block" color="success" (click)="doGoogleLogin()">
-    Got an account? Sign in here
+    <ion-icon name="person-add-sharp"></ion-icon>
     &nbsp;
-    <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+    Sign in with Google
   </ion-button>
 
 </div>
