@@ -1,0 +1,44 @@
+
+<ion-content fullscreen>
+  <form [formGroup]="postForm" (ngSubmit)="CreatePost()">
+    <ion-title>Share Post</ion-title>
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Title <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input mode="ios" formControlName="title" type="text"></ion-input>
+      </ion-item>
+      <span
+      *ngIf="!postForm.controls.title.pristine && postForm.controls.title.errors && postForm.controls.title.errors.required"
+      class="error-message">
+      <p>title is required</p>
+    </span>
+    <ion-item>
+      <ion-label position="stacked">Content<ion-text color="danger">*</ion-text></ion-label>
+      <ion-textarea mode="ios" formControlName="content" type="text"></ion-textarea>
+    </ion-item>
+    <span
+      *ngIf="!postForm.controls.content.pristine && postForm.controls.content.errors && postForm.controls.content.errors.required"
+      class="error-message">
+      <p>Content is required.</p>
+    </span>
+    </ion-list>
+    <ion-button expand="full" type="submit" Size="default" class="btn--bottom" [disabled]="!postForm.valid">
+      <ion-icon slot="start" name="business-outline"></ion-icon>
+      <p>Create Post</p>
+    </ion-button>
+  </form>
+</ion-content>
+
+<ion-content>
+  <ion-list>
+    <ion-button (click)="viewPost()"> ViewPost </ion-button>
+    <ion-item *ngFor="let list of ForumList">
+    <ion-label>Title
+      <ion-label>{{list.title}}</ion-label>
+    </ion-label>
+    <ion-label>Content
+      <ion-label>{{list.content}}</ion-label>
+    </ion-label>      
+    </ion-item>
+  </ion-list>
+</ion-content>

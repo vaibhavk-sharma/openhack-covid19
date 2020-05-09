@@ -7,6 +7,9 @@ export class ApiRoutes {
     public static FilterCommunityBySearchTerm =  getLocalDomain() + "api/community/filterCommunitybySearchTerm";
     public static RegisterCommunity =  getLocalDomain() + "api/community/registerCommunity";
     public static GetAllUsers = getLocalDomain() + "api/user/getAllUsers";
+    public static ViewAllPost = getLocalDomain() + "api/forum/viewAllPost";
+    public static CreatePost = getLocalDomain() + "api/forum/createPost";
+    public static DeletePost = getLocalDomain() + "api/forum/deletePost";
 
 }
 

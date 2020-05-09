@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { menuController } from '@ionic/core';
 
 @Component({
   selector: 'app-home-tab',
@@ -10,14 +11,17 @@ import { AlertController } from '@ionic/angular';
 })
 export class HomeTabPage implements OnInit {
 
-  menu = false;
+  
   loggedInUser: any;
   constructor(
     private alertController: AlertController,
     private router: Router, 
-    private storage: Storage) { }
+    private storage: Storage) {
+      
+     }
 
   ngOnInit() {
+  
     this.storage.get('local_community_user').then(data => {
       if (data != null) {
         this.loggedInUser = data;
@@ -38,8 +42,8 @@ export class HomeTabPage implements OnInit {
     autoplay:true
    };
 
-  openMenu() {
-    this.menu = true;
+   async openMenu() {
+    await menuController.open();
   }
 
   admin() {
@@ -63,3 +67,4 @@ export class HomeTabPage implements OnInit {
     this.logout();
   }
 }
+

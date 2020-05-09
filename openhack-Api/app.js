@@ -36,6 +36,9 @@ app.post('/api/user/deleteRejectedUser',apiUserRoutes.DeleteRejectedUser);
 app.post('/api/user/registerUser',apiUserRoutes.RegisterUser);
 app.post('/api/community/filterCommunityBySearchTerm',apiCommunityRoutes.FilterBySearchTerm);
 app.post('/api/community/registerCommunity',apiCommunityRoutes.RegisterCommunity);
+app.post('/api/forum/createPost',apiForumRoutes.CreatePost);
+app.post('/api/forum/viewAllPost',apiForumRoutes.ViewAllPost);
+app.post('/api/forum/deletePost',apiForumRoutes.DeletePostByAdmin);
 app.get('*', apiRoutes.index);
 /**
  * Error Handler.

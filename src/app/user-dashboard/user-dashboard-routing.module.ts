@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserDashboardPage  } from './user-dashboard.page';
 import { HomeTabPage } from './home/home.page';
 import { EssentialsPage } from './essentials/essentials.page';
+import { ForumPage } from './forum/forum.page';
 
 const routes: Routes = [
   {
@@ -22,8 +23,13 @@ const routes: Routes = [
         path: 'essentials',
         component: EssentialsPage
       },
+      {
+        path: 'forum',
+        component: ForumPage
+      }
     ]
   }
+
 
 ];
 
