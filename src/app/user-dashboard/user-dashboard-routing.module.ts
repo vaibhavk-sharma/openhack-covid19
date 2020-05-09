@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UserDashboardPage  } from './user-dashboard.page';
 import { HomeTabPage } from './home/home.page';
+import { EssentialsPage } from './essentials/essentials.page';
 
 const routes: Routes = [
   {
@@ -16,9 +17,14 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeTabPage
-      }
+      },
+      {
+        path: 'essentials',
+        component: EssentialsPage
+      },
     ]
   }
+
 ];
 
 @NgModule({
