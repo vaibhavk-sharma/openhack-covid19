@@ -30,5 +30,9 @@
   --ion-safe-area-bottom: 22px;  
 }  
 ion-slide {  
-  height: calc(100vh - 140px);  
+  height: calc(100vh - 100px);  
 }  
+
+.background{
+  --background: url(../../assets/Images/white2.jpg) 0 0/100% 100% no-repeat;
+}
