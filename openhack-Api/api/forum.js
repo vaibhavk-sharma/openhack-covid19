@@ -63,7 +63,6 @@ exports.DeletePostByAdmin = ((req,res) => {
             console.log("Deleted post")
             res.json({ statusCode: 202 });
         }
-      });
-    
+      });   
 
 })
