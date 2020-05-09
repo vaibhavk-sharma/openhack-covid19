@@ -1,7 +1,12 @@
 ion-tab-button{
     max-width: 50%;
     background-color:#263238;
+    
 }
+
+ion-tab-button.tab-selected{
+    background:orange !important;
+  }
 
 ion-label{
     color: white;
@@ -48,3 +53,6 @@ ion-icon{
     color:white
 }
 
+.activated {
+    background-color: blue;
+ }

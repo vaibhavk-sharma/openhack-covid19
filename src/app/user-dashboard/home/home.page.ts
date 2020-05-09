@@ -32,6 +32,12 @@ export class HomeTabPage implements OnInit {
     });
   }
 
+  slideOptions = {
+    initialSlide: 0,
+    slidesPerView: 1,
+    autoplay:true
+   };
+
   openMenu() {
     this.menu = true;
   }
@@ -53,5 +59,7 @@ export class HomeTabPage implements OnInit {
     });
 
     await alert.present();
+    
+    this.logout();
   }
 }
