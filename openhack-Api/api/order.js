@@ -1,7 +1,8 @@
 const db_utlity = require("../db-utility");
 const db_constants = require("../constants");
 
-exports.GetSupplierforCommunity = (req,res) => {
+// Getting all the supplier details belonging to the user community
+exports.GetSupplier = (req,res) => {
     console.log("1.GetsupplierForCommunity");
     let db = db_utlity.getDbInstance(db_constants["SUPPLIERINFODB"]);
     let communityId=req.body.communityId;
@@ -21,7 +22,9 @@ exports.GetSupplierforCommunity = (req,res) => {
         }
     });
 };
-exports.GetSupplierDetails = (req,res) => {
+
+// Getting all the items supplied by that supplier
+exports.GetSupplierItems = (req,res) => {
     let db = db_utlity.getDbInstance(db_constants["SUPPLIERINFODB"]);
     let supplierId=req.body.supplierId;
     let selector = {};
@@ -38,6 +41,8 @@ exports.GetSupplierDetails = (req,res) => {
         }
     });
 };
+
+// Select the item to create an order
 exports.CreateOrder = (req,res) => {
     let db = db_utlity.getDbInstance(db_constants["ORDERDB"]);
     let order =  {

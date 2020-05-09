@@ -25,7 +25,7 @@ export class HomeTabPage implements OnInit {
     this.storage.get('local_community_user').then(data => {
       if (data != null) {
         this.loggedInUser = data;
-        console.log(JSON.stringify(this.loggedInUser));
+        //console.log(JSON.stringify(this.loggedInUser));
         if(this.loggedInUser && !this.loggedInUser.isUserVerified && !this.loggedInUser.isAdmin){
           this.showUserVerifiedAlert();
         }

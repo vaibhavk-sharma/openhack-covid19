@@ -41,9 +41,9 @@ app.post('/api/community/registerCommunity',apiCommunityRoutes.RegisterCommunity
 app.post('/api/forum/createPost',apiForumRoutes.CreatePost);
 app.post('/api/forum/viewAllPost',apiForumRoutes.ViewAllPost);
 app.post('/api/forum/deletePost',apiForumRoutes.DeletePostByAdmin);
-app.post('/api/order/getSupplier',apiOrderRoutes.GetSupplierforCommunity);
-app.post('/api/order/getOrderDetails',apiOrderRoutes.GetSupplierDetails);
-app.post('/api/order/placeOrder',apiOrderRoutes.CreateOrder);
+app.post('/api/order/getSupplier',apiOrderRoutes.GetSupplier);
+app.post('/api/order/getSupplierItems',apiOrderRoutes.GetSupplierItems);
+app.post('/api/order/createOrder',apiOrderRoutes.CreateOrder);
 app.get('*', apiRoutes.index);
 /**
  * Error Handler.

@@ -57,8 +57,8 @@
       <ion-item>
         <ion-label>Supplier</ion-label>
         <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" 
-        placeholder="Choose Supplier"  (ionChange)="viewItems(supplier)">
-          <ion-select-option *ngFor="let supplier of supplierList" value="supplier">{{supplier}}</ion-select-option>
+        placeholder="Choose Supplier"  (ionChange)="getSupplierItems($event)">
+          <ion-select-option *ngFor="let supplier of supplierList" value={{supplier.firstName}}>{{supplier.firstName}}</ion-select-option>
         </ion-select> 
       </ion-item>
     </ion-list>
