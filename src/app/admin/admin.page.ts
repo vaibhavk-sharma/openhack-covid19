@@ -15,7 +15,7 @@ export class AdminPage implements OnInit {
 
   admin: any;
   unverifiedUserList : any;
-
+  flag:boolean;
 
   constructor(private router: Router,
     private storage: Storage,
@@ -24,6 +24,7 @@ export class AdminPage implements OnInit {
     // public navParams: NavParams
     ) {
       // this.user = navParams.get('incomingUser');
+      this.flag=false;
      }
 
   ngOnInit() {
@@ -51,6 +52,7 @@ export class AdminPage implements OnInit {
         if (data != null && data.length > 0) {
           // console.log("YIOEEEEEEE")
           this.unverifiedUserList = data;
+          this.flag = false;
         }
         else {
           /// GENERATE ALERT FOR NO USER IN COMMUNITY
@@ -58,6 +60,7 @@ export class AdminPage implements OnInit {
             message : 'Sorry! No Users to View',
             status : 'sorry'
           }
+          this.unverifiedUserList=[];
           this.handleButtonClick(messageObj);
         }
       },
@@ -129,13 +132,16 @@ export class AdminPage implements OnInit {
     let duration = 2000;
     if(messageObject.status == 'accept') {
       color = 'success'
+      this.flag=false;
     }
     else if (messageObject.status == 'reject') {
       color = 'dark'
+      this.flag=false;
     }
     else {
       color = 'tertiary'
       duration = 5000
+      this.flag=true;
     }
     const toast = await toastController.create({
       color: color,
@@ -145,7 +151,8 @@ export class AdminPage implements OnInit {
     });
     
     await toast.present();
-    this.getUnverifiedUsers();
+    if(this.flag === false)
+      this.getUnverifiedUsers();
     
   }
 

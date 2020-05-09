@@ -13,6 +13,7 @@ dotenv.config({ path: 'developmet.env' });
 const apiRoutes = require('./api');
 const apiUserRoutes = require('./api/user');
 const apiCommunityRoutes = require('./api/community');
+const apiForumRoutes = require('./api/forum');
 
 /**
  * Create Express server.

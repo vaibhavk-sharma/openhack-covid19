@@ -10,7 +10,7 @@ import { menuController } from '@ionic/core';
 })
 export class EssentialsPage implements OnInit {
 
-  
+  supplierList:any;
   loggedInUser: any;
   constructor(private router: Router, 
     private storage: Storage) {
@@ -18,7 +18,7 @@ export class EssentialsPage implements OnInit {
      }
 
   ngOnInit() {
-    
+    this.supplierList=["Sukriti","Vinay","Shruti"];
     this.storage.get('local_community_user').then(data => {
       if (data != null) {
         this.loggedInUser = data;
@@ -47,4 +47,12 @@ export class EssentialsPage implements OnInit {
     this.router.navigateByUrl('home')
   }
 
+  customPopoverOptions: any = {
+    header: 'Select a supplier to view available items'
+  };
+
+  viewItems(supplierName)
+  {
+    console.log(supplierName);
+  }
 }

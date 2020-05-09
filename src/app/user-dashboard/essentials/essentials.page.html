@@ -50,3 +50,18 @@
     </ion-content>
   </ion-menu>
   <ion-router-outlet id="main"></ion-router-outlet>
+
+  <!-- Drop down to select the supplier -->
+  <ion-content fullscreen>
+    <ion-list >
+      <ion-item>
+        <ion-label>Supplier</ion-label>
+        <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" 
+        placeholder="Choose Supplier"  (ionChange)="viewItems(supplier)">
+          <ion-select-option *ngFor="let supplier of supplierList" value="supplier">{{supplier}}</ion-select-option>
+        </ion-select> 
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+

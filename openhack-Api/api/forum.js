@@ -9,7 +9,7 @@ const db_constants = require("../constants");
  *
  */
 exports.CreatePost = (req,res) => {
-    console.log("Idhar aaya");
+    console.log("Idhar aaya", req.body);
     let db = db_utlity.getDbInstance(db_constants["FORUMDB"]);
    
     let whenCreated = Date.now();
@@ -25,7 +25,7 @@ exports.CreatePost = (req,res) => {
                 res.json(err);
             } else {
                 console.log('Result', result);
-                res.json({ _id: result.id, sharedContent: result.content, statusCode: 201 });
+                res.json({ result: result, statusCode: 201 });
             }
         });
 };
@@ -43,7 +43,7 @@ exports.ViewAllPost = (req,res) => {
         if (err) {
             res.json(err);
         } else {
-            console.log(documents.docs[0].content);
+            
             res.json(documents.docs);
         }
     });
@@ -53,12 +53,15 @@ exports.DeletePostByAdmin = ((req,res) => {
     let db = db_utlity.getDbInstance(db_constants["FORUMDB"]);;
     let contentId = req.body.contentId;
     let latestrev = req.body.latestrev;
+
+    console.log(JSON.stringify(req.body), contentId,latestrev);
     db.destroy(contentId,latestrev, function(err, body, header) {
         if (err) {
             console.log('Error occurred: ' + err.message, 'delete failed');
             res.json(err);
         } else {
-            res.json({ statusCode: 200 });
+            console.log("Deleted post")
+            res.json({ statusCode: 202 });
         }
       });
     

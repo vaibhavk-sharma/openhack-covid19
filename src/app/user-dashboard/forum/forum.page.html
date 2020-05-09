@@ -1,44 +1,79 @@
-
-<ion-content fullscreen>
-  <form [formGroup]="postForm" (ngSubmit)="CreatePost()">
-    <ion-title>Share Post</ion-title>
-    <ion-list lines="full" class="ion-no-margin ion-no-padding">
-      <ion-item>
-        <ion-label position="stacked">Title <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input mode="ios" formControlName="title" type="text"></ion-input>
-      </ion-item>
-      <span
-      *ngIf="!postForm.controls.title.pristine && postForm.controls.title.errors && postForm.controls.title.errors.required"
-      class="error-message">
-      <p>title is required</p>
-    </span>
-    <ion-item>
-      <ion-label position="stacked">Content<ion-text color="danger">*</ion-text></ion-label>
-      <ion-textarea mode="ios" formControlName="content" type="text"></ion-textarea>
-    </ion-item>
-    <span
-      *ngIf="!postForm.controls.content.pristine && postForm.controls.content.errors && postForm.controls.content.errors.required"
-      class="error-message">
-      <p>Content is required.</p>
-    </span>
-    </ion-list>
-    <ion-button expand="full" type="submit" Size="default" class="btn--bottom" [disabled]="!postForm.valid">
-      <ion-icon slot="start" name="business-outline"></ion-icon>
-      <p>Create Post</p>
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button auto-hide="false" (click)="openMenu()"></ion-menu-button>
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <ion-button>
+      <ion-icon slot="icon-only" md="notifications"></ion-icon>
     </ion-button>
-  </form>
+  </ion-buttons>
+
+  <ion-title><span>Welcome to Forum</span></ion-title>
+</ion-toolbar>
+
+<!-- View all the post to user -->
+<ion-content *ngIf="ForumList">
+  <ion-card *ngFor = "let list of ForumList" fill="outline" color="light">
+    <ion-card-header>
+      <ion-card-title>{{list.title}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{list.content}}
+    </ion-card-content>
+    <ion-footer>
+      
+      <ion-chip color="danger" color="danger">
+        <ion-icon name="thumbs-up-outline" color="danger"></ion-icon>
+        <ion-label color="danger">Like</ion-label>
+      </ion-chip>
+
+      <ion-chip *ngIf="loggedInUser.isAdmin" color="dark" (click)="deletePost(list)">
+        <ion-icon name="trash" color="dark"></ion-icon>
+        <ion-label color="dark">Trash</ion-label>
+      </ion-chip> 
+    </ion-footer>
+
+  </ion-card>
 </ion-content>
 
-<ion-content>
-  <ion-list>
-    <ion-button (click)="viewPost()"> ViewPost </ion-button>
-    <ion-item *ngFor="let list of ForumList">
-    <ion-label>Title
-      <ion-label>{{list.title}}</ion-label>
-    </ion-label>
-    <ion-label>Content
-      <ion-label>{{list.content}}</ion-label>
-    </ion-label>      
-    </ion-item>
-  </ion-list>
-</ion-content>
+<!-- creates post for user -->
+  <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+    <ion-fab-button color="dark">
+      <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      
+      <ion-card (click) = "fab($event)" style="width:calc(100hw-100px)">
+        <ion-card-header>Create Post</ion-card-header>
+        <form [formGroup]="postForm" (ngSubmit)="CreatePost()">
+
+          <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item>
+              <ion-label position="floating">Title <ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-input formControlName="title" type="text"></ion-input>
+            </ion-item>
+            <span
+              *ngIf="!postForm.controls.title.pristine && postForm.controls.title.errors && postForm.controls.title.errors.required"
+              class="error-message">
+              <ion-item>Title is required</ion-item>
+            </span>
+            <ion-item>
+              <ion-label position="floating">Content<ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-textarea mode="ios" formControlName="content" type="text"></ion-textarea>
+            </ion-item>
+            <span
+              *ngIf="!postForm.controls.content.pristine && postForm.controls.content.errors && postForm.controls.content.errors.required"
+              class="error-message">
+              <p>Content is required.</p>
+            </span>
+          </ion-list>
+          <ion-button expand="full" type="submit" Size="default" class="btn--bottom" [disabled]="!postForm.valid">
+            <ion-icon slot="start" name="business-outline"></ion-icon>
+            <p>Create Post</p>
+          </ion-button>
+        </form>
+      </ion-card>
+    </ion-fab-list>
+  </ion-fab>
