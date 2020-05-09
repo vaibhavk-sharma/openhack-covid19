@@ -8,6 +8,7 @@ import { UserDashboardPageRoutingModule } from './user-dashboard-routing.module'
 
 import { UserDashboardPage } from './user-dashboard.page';
 import { HomeTabPage } from './home/home.page';
+import { EssentialsPage } from './essentials/essentials.page';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { HomeTabPage } from './home/home.page';
     IonicModule,
     UserDashboardPageRoutingModule
   ],
-  declarations: [UserDashboardPage, HomeTabPage]
+  declarations: [UserDashboardPage, HomeTabPage,EssentialsPage]
 })
 export class UserDashboardPageModule {}
