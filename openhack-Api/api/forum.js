@@ -60,7 +60,6 @@ exports.DeletePostByAdmin = ((req,res) => {
         } else {
             res.json({ statusCode: 200 });
         }
-      });
-    
+      });   
 
 })
