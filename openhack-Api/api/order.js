@@ -54,10 +54,6 @@ exports.CreateOrder = (req,res) => {
                 message:"Order placed successfully", statusCode: 201 });
         }
     });
-    exports.UpdateOrder = (req,res) => {
-        
-    }
 }
-
 
 
