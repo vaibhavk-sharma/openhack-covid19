@@ -8,7 +8,7 @@
     </ion-button>
   </ion-buttons>
 
-  <ion-title *ngIf="loggedInUser && loggedInUser.firstName"><span>Hello, {{loggedInUser.firstName}}</span></ion-title>
+  <ion-title><span>Cart Details</span></ion-title>
 </ion-toolbar>
 
 <!-- Menu bar for user -->
@@ -51,45 +51,11 @@
   </ion-menu>
   <ion-router-outlet id="main"></ion-router-outlet>
 
-  <!-- Drop down to select the supplier -->
-  <ion-content fullscreen>
-    <ion-list>
-      <ion-item color="warning">
-        <ion-label>Supplier</ion-label>
-        <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" 
-        placeholder="Choose Supplier"  (ionChange)="getSupplierItems($event)">
-          <ion-select-option *ngFor="let supplier of supplierList" value={{supplier._id}} >{{supplier.firstName}}</ion-select-option>
-        </ion-select> 
-      </ion-item>
-    </ion-list>
-
-
-  <!-- Viewing Items of selected supplier -->
-  <ion-content *ngIf="itemsList && itemsList.length>0">
-    <ion-list>
-      <ion-list-header color="dark"><h3>Items Details</h3></ion-list-header>
-      <ion-item *ngFor="let item of itemsList" color="light" (click)="addToCart(item)">
-        <ion-icon name="cart" color="dark"></ion-icon>&nbsp; &nbsp;
-        <ion-label>
-          <h2><strong>{{item.name}}</strong></h2>
-          <h3> Price/Unit: &nbsp;{{item.pricePerUnit}}</h3> 
-        </ion-label> 
-      </ion-item>
-      
-      
-    </ion-list>  
-    
+  <!-- Items in cart -->
+  <ion-content>
+    <ion-card>
+      <ion-card-header>
+        
+      </ion-card-header>
+    </ion-card>
   </ion-content>
-
-  <!-- Creating modal for choosing quantity of item -->
-
-  </ion-content>
-
-  <!-- Footer to view cart button -->
-  <ion-footer>
-    <ion-button size="block" color="dark" (click)="viewCart()">View Cart</ion-button>
-  </ion-footer>
-
- 
-
-

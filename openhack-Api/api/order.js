@@ -10,6 +10,10 @@ exports.GetSupplier = (req,res) => {
         "$and":[
             {
                 "type":"Supplier"
+                
+            },
+            {
+            "isUserVerified":true
             },
             {
                 "communityId":{
@@ -24,7 +28,7 @@ exports.GetSupplier = (req,res) => {
         if (err) {
             res.json(err);
         } else {
-            console.log(documents.docs[0]);
+            console.log(documents.docs);
             res.json(documents.docs);
         }
     });
@@ -32,6 +36,7 @@ exports.GetSupplier = (req,res) => {
 
 // Getting all the items supplied by that supplier
 exports.GetSupplierItems = (req,res) => {
+    console.log("2.GetsupplierItems");
     let db = db_utlity.getDbInstance(db_constants["SUPPLIERINFODB"]);
     let supplierId=req.body.supplierId;
     let selector = {};
