@@ -7,19 +7,18 @@ import { ItemInfo } from 'src/shared/models/item.model';
   templateUrl: './add-items.html',
   styleUrls: ['./add-items.scss']
 })
-export class AddItemsModal implements OnInit {
+export class AddItemsModal{
   item: ItemInfo;
   isSubmitted: boolean;
-  addItemsForm: FormGroup;
+  addItemsForm: FormGroup = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    quantity: ['', [Validators.required]],
+    baseUnit: ['Kilos', [Validators.required]],
+    pricePerUnit: ['', [Validators.required]]
+  });
   constructor(private formBuilder: FormBuilder,private popOverController: PopoverController) {}
 
-  ngOnInit() {
-    this.addItemsForm = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      quantity: ['', [Validators.required]],
-      baseUnit: ['Kilos', [Validators.required]],
-      pricePerUnit: ['', [Validators.required]]
-    });
+  ionViewWillEnter() {
     if(this.item){
       this.addItemsForm.controls.name.setValue(this.item.name);
       this.addItemsForm.controls.quantity.setValue(this.item.quantity);

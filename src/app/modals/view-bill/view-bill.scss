@@ -1,0 +1,20 @@
+.error-message{
+    font-size: 15px;
+    color: red;
+     & > p{
+        padding-left:15px;
+    }
+}
+
+ion-toolbar {
+    margin-right: 0px;
+}
+
+ion-title {
+    padding-right:0px;
+    padding-left:0px;
+}
+
+ion-header {
+    margin-left: 7px;
+}

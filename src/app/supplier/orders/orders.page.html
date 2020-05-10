@@ -1,15 +1,62 @@
 <div class="page-content">
-  <div *ngIf="">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-button>
-          <ion-icon class="home-page-icons" name="cart-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-      <ion-title><span>Initialized Orders</span></ion-title>
-    </ion-toolbar>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>
+        Filter By Status
+      </ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-select #status interface="action-sheet" [(ngModel)]="orderStatus" (ionChange)="selectOrderStatus()">
+        <ion-select-option value="initiated">Initiated Orders</ion-select-option>
+        <ion-select-option value="paymentinitiated">Payment Initiated Orders</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="status.value === 'initiated' && initializedOrders && initializedOrders && initializedOrders.length > 0">
     <ion-list>
-      
+      <ion-card *ngFor="let order of initializedOrders; let i = index;">
+        <ion-item>
+          <ion-toolbar slot="start">
+            <ion-title class="list-items">Order Id: {{order._id}}</ion-title>
+            <ion-title class="list-item-totalBill">Bill Amount: {{order.totalBill}}</ion-title>
+          </ion-toolbar>
+        </ion-item>
+        <ion-item>          
+          <ion-toolbar slot="start">
+            <ion-buttons slot="start">
+              <ion-button (click)="viewBillDetails(order,i)">
+                View Bill
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-item>
+      </ion-card>
+    </ion-list>
+  </div>
+
+  <div *ngIf="status.value === 'paymentinitiated' && paymentInitiatedOrders && paymentInitiatedOrders && paymentInitiatedOrders.length > 0">
+    <ion-list>
+      <ion-card *ngFor="let order of paymentInitiatedOrders; let i = index;">
+        <ion-item>
+          <ion-toolbar slot="start">
+            <ion-title class="list-items">Order Id: {{order._id}}</ion-title>
+            <ion-title class="list-item-totalBill">Bill Amount: {{order.totalBill}}</ion-title>
+            <ion-title class="list-item-transactionId">Payment TrasactionId: {{order.transactionId}}</ion-title>
+          </ion-toolbar>
+        </ion-item>
+        <ion-item>          
+          <ion-toolbar slot="start">
+            <ion-buttons slot="start">
+              <ion-button (click)="viewBillDetails(order,i)" *ngIf="status.value === 'initiated'"> 
+                View Bill
+              </ion-button>
+              <ion-button (click)="verifyBillDetails(order,i)" *ngIf="status.value === 'paymentinitiated'"> 
+                Verify Bill
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-item>
+      </ion-card>
     </ion-list>
   </div>
 </div>

@@ -120,3 +120,68 @@ exports.getOrders = (req, res) => {
     }
 };
 
+
+
+/** Post
+ *  RegisterUser.
+ */
+exports.UpdateOrderStatus = (req, res) => {
+    let db = db_utlity.getDbInstance(db_constants["ORDERS"]);
+    let order = req.body;
+    db.insert(order, (err, result) => {
+        if (err) {
+            console.log('Error occurred: ' + err.message, 'insert failed');
+            res.json(err);
+        } else {
+            res.json({ _id: result.id, _revId: result.rev, statusCode: 201 });
+        }
+    });
+};
+
+/**
+ * Post 
+ * Update order status Fetch order by resident id
+ */
+exports.getOrders = (req, res) => {
+    /**@param: residentId or supplierId at least one, status -optional under the req.body */
+    /** 
+    {
+        "residentId":"11e256395e9a14982b01cd1d5b24849d",
+        "supplierId":""
+      }
+    */
+
+    let residentId = req.body.residentId;
+    let supplierId = req.body.supplierId;
+    let status = req.body.status;
+    let selector = {};
+
+    // Mock 
+    // residentId = "11e256395e9a14982b01cd1d5b24849d";
+
+    if (residentId || supplierId) {
+        let db = db_utlity.getDbInstance(db_constants["ORDERS"]);
+
+        selector['residentId'] = residentId;
+        selector['supplierId'] = supplierId;
+
+        if (status) {
+            selector['status'] = status;
+        }
+
+        db.find({
+            'selector': selector
+        }, (err, documents) => {
+            if (err) {
+                res.json(err);
+
+            } else {
+                res.json(documents.docs);
+            }
+        });
+    }
+    else {
+        res.json("Required parameters are missing in the request!");
+    }
+};
+

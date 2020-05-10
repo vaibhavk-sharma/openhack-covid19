@@ -11,6 +11,7 @@ import { SupplierUpdateStockPage } from './update-stock/update-stock.page';
 import { SupplierUpdateServicesPage } from './update-services/update-services.page';
 import { AddItemsModal } from '../modals/add-items/add-items.modal';
 import { ShowItemsModal } from '../modals/show-items/show-items.modal';
+import { ViewBillModal } from '../modals/view-bill/view-bill.modal';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ShowItemsModal } from '../modals/show-items/show-items.modal';
     SupplierUpdateStockPage,
     SupplierUpdateServicesPage,
     AddItemsModal,
-    ShowItemsModal
+    ShowItemsModal,
+    ViewBillModal
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { ShowItemsModal } from '../modals/show-items/show-items.modal';
   ],
   entryComponents:[
     AddItemsModal,
-    ShowItemsModal
+    ShowItemsModal,
+    ViewBillModal
   ]
 })
 export class SupplierModule { }

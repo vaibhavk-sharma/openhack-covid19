@@ -60,6 +60,11 @@ export class SupplierUpdateStockPage {
       if (data && data.length > 0) {
         this.supplierInfo = data[0];
       }
+      else{
+        this.supplierInfo = new SupplierItemInfo;
+        this.supplierInfo.items = [];
+        this.supplierInfo.supplierId = this.loggedInUser._id;
+      }
     },
       (err) => {
         this.presentAlert();
@@ -76,8 +81,15 @@ export class SupplierUpdateStockPage {
     modal.onWillDismiss().then(returnedData => {
       console.log(returnedData);
       if (returnedData.data && returnedData.data.form && returnedData.data.form.valid && returnedData.data.isSubmitted) {
-        this.supplierInfo.items.push(returnedData.data.form.value);
-        this.isItemUpdated = true;
+        if(this.supplierInfo && this.supplierInfo.items){
+          this.supplierInfo.items.push(returnedData.data.form.value);
+          this.isItemUpdated = true;
+        }
+        else{
+          this.supplierInfo = new SupplierItemInfo;          
+          this.supplierInfo.items.push(returnedData.data.form.value);
+          this.isItemUpdated = true;
+        }        
       }
     });
     return await modal.present();
@@ -128,6 +140,8 @@ export class SupplierUpdateStockPage {
     this.supplierService.SaveSupplierItemInfo(supplierItemInfo).subscribe((data)=>{
       if(data!=null && data._id!="")
         this.isItemUpdated = false;
+        this.supplierInfo._id = data._id;
+        this.supplierInfo._id = data._revid;
     },
     (err) => {
       this.presentAlert();

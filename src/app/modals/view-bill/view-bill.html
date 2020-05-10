@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>View Bill</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div *ngIf="order && order.items && order.items.length > 0">
+        <ion-card *ngFor="let item of order.items;let i = index;">
+            <ion-item>
+                <ion-toolbar slot="start">
+                    <ion-title class="list-items">Name: {{item.name}}</ion-title>
+                    <div *ngIf="!isEdit">
+                        <ion-title class="list-items">Quantity: {{item.quantity}}</ion-title>
+                    </div>
+                    <div *ngIf="isEdit">
+                        <ion-label>Quantity</ion-label> 
+                        <ion-input [(ngModel)]="updatedItems[i].quantity"></ion-input>
+                    </div>
+                    <ion-title class="list-items">BaseUnit: {{item.baseUnit}}</ion-title>
+                </ion-toolbar>
+                <ion-toolbar slot="start">
+                    <ion-buttons slot="end">
+                        <div *ngIf="!isEdit">
+                        <ion-button (click)="editItemInfo(item,i)">
+                            <ion-icon name="pencil-outline"></ion-icon>
+                        </ion-button>
+                        </div>
+                    </ion-buttons>
+                    <div *ngIf="isEdit" slot="end">
+                        <ion-button (click)="saveItemInfo(item,i)">
+                            <ion-icon name="save-sharp"></ion-icon>
+                        </ion-button>
+                    </div>
+                </ion-toolbar>
+            </ion-item>
+        </ion-card>
+        <ion-item>
+            <ion-toolbar slot="start">
+                <ion-title class="list-items">Bill Amount: {{order.totalBill}}</ion-title>
+            </ion-toolbar>
+        </ion-item>
+        <ion-item>
+            <ion-toolbar slot="start" *ngIf="order && order.status === 'initiated'">
+                <ion-button (click)="confirmStatus()">
+                    Confirm
+                </ion-button>
+                <ion-button (click)="notConfirmStatus()">
+                    Not Confirm
+                </ion-button>
+            </ion-toolbar>
+            <ion-toolbar slot="start" *ngIf="order && order.status === 'paymentinitiated'">
+                <ion-button (click)="verifyPayment(order)">
+                    Verify Payment
+                </ion-button>
+            </ion-toolbar>
+        </ion-item>
+    </div>
+</ion-content>

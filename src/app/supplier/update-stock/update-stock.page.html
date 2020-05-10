@@ -1,5 +1,5 @@
 <div class="page-content">
-  <div *ngIf="supplierInfo && supplierInfo.items && supplierInfo.items.length == 0">
+  <div *ngIf="!supplierInfo || (supplierInfo && supplierInfo.items && supplierInfo.items.length == 0)">
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-button>

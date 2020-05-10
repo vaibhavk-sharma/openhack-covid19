@@ -10,8 +10,20 @@ export class ApiRoutes {
         
     public static GetSupplierInfoBySupplierId =  getLocalDomain() + "api/supplier/GetSupplierInfoBySupplierId";
     public static SaveSupplierItemInfo = getLocalDomain() + "api/supplier/SaveSupplierItemInfo";
+    public static GetOrders = getLocalDomain() + "api/order/getOrders";
+    public static UpdateOrderStatus = getLocalDomain() + "api/order/updateOrderStatus";
 }
 
 function getLocalDomain(){
     return "http://localhost:8080/";
+}
+
+export class OrderStatus {
+    public static Initiated = 'initiated';
+    public static Confirmed = 'confirmed';
+    public static NotConfirmed = 'notconfirmed';
+    public static PaymentInitiated = 'paymentinitiated';
+    public static PaymentVerified = 'paymentverified';
+    public static Cancelled = 'cancelled';
+    public static Completed = 'completed';
 }
