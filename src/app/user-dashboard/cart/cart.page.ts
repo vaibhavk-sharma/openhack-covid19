@@ -19,17 +19,16 @@ export class CartPage implements OnInit {
   static flag: boolean;
   itemList: Items[] = [];
   static supplierId: string;
-  supplier_Id:string;
-  successMessage:string;
-  loggedInUser:any;
+  supplier_Id: string;
+  successMessage: string;
+  loggedInUser: any;
 
-  constructor(  private formBuilder: FormBuilder,private router: Router,
-    private storage: Storage,private orderService:OrderService) { 
+  constructor(private formBuilder: FormBuilder, private router: Router,
+    private storage: Storage, private orderService: OrderService) {
   }
 
-  ngOnInit()
-  {
-    this.itemList=CartPage.items;
+  ngOnInit() {
+    this.itemList = CartPage.items;
     this.supplier_Id = CartPage.supplierId;
 
     this.storage.get('local_community_user').then(data => {
@@ -42,29 +41,32 @@ export class CartPage implements OnInit {
         console.log(err.message);
       });
   }
-    
-createPost(order){
-  this.order.items = this.itemList;
-  this.order.supplierId = this.supplier_Id;
-  this.order.residentId = this.loggedInUser.residentId;
-  this.orderService.createOrder(order).subscribe((data) => {
-    this.successMessage = data.message;
-    this.itemList =[];
-  })
-}
-  
 
-  static cartItems(item: any,supplierId: string) {
+  createOrder() {
+    let order = new Order;
+    order.items = this.itemList;
+    console.log("Abhishek", order.items);
+    order.supplierId = this.supplier_Id;
+    order.residentId = this.loggedInUser._id;
+    this.orderService.createOrder(order).subscribe((data) => {
+      this.successMessage = data.message;
+      console.log(this.successMessage);
+      this.itemList = [];
+    })
+  }
+
+
+  static cartItems(item: any, supplierId: string) {
     this.flag = true;
     this.supplierId = supplierId;
-    this.items.push(item);    
-    console.log(this.items);
+    this.items.push(item);
+
   }
 
   async openMenu() {
     await menuController.close();
     await menuController.open();
-   console.log(menuController.getOpen())
+    console.log(menuController.getOpen())
   }
 
   admin() {
