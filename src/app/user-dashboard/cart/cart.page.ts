@@ -41,8 +41,17 @@ export class CartPage implements OnInit {
   }
 
   static cartItems(item : any) {
-    this.flag=true;
-    this.items.push(item);
+    let result = this.items.find(obj => {
+      return obj.name === item.name
+    })
+    console.log(result, typeof result)
+     if( result != undefined ) {
+      result.quantity ++;
+     }
+     else {
+      this.items.push(item);
+     }
+    
     console.log(this.items);
   
   }
