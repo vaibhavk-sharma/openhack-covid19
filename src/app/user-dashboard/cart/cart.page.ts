@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { order, Items } from 'src/shared/models/order.model';
+import { Order, Items } from 'src/shared/models/order.model';
 import { OrderService } from 'src/shared/services/order.service';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -10,26 +10,40 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class CartPage implements OnInit {
 
-  private  order: order[];
-  static items : Items[] = [];
-  flag=false;
+  private order: Order;
+  static items: Items[] = [];
+  flag = false;
   static flag: boolean;
-  itemList : Items[] =[];
+  itemList: Items[] = [];
+  static supplierId: string;
+  supplier_Id:string;
+  successMessage:string;
 
-  constructor(  private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder, private orderService: OrderService) {
   }
 
-  ngOnInit()
-  {
-    this.itemList=CartPage.items;
-    
-  }
+  ngOnInit() {
+    this.itemList = CartPage.items;
+    this.supplier_Id = CartPage.supplierId;
 
-  static cartItems(item : any) {
-    this.flag=true;
-    this.items.push(item);
-    console.log(this.items);
+  }
+  createOrder(order){
+    this.order.items = this.itemList;
+    this.order.supplierId = this.supplier_Id;
+    this.orderService.createOrder(this.order).subscribe(
+      (data) => {
+        this.successMessage = data.message;
+        this.itemList=[];
+      }
+    )
+  }
   
+
+  static cartItems(item: any,supplierId: string) {
+    this.flag = true;
+    this.supplierId = supplierId;
+    this.items.push(item);    
+    console.log(this.items);
   }
 
 
