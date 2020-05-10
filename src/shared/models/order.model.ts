@@ -9,7 +9,7 @@ export class order{
 };
 export class Items{
     public name: string;
-    public quantity: string;
+    public quantity: number;
     public baseUnit:['Kilos',"Numbers","Litres"];
     public pricePerUnit: string;
 }

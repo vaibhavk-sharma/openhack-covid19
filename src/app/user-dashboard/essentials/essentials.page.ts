@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { menuController } from '@ionic/core';
 import { OrderService } from 'src/shared/services/order.service';
 import { CartPage } from 'src/app/user-dashboard/cart/cart.page'
+import { Items } from 'src/shared/models/order.model';
 
 @Component({
   selector: 'app-essentials',
@@ -110,9 +111,14 @@ export class EssentialsPage implements OnInit {
 
 //Opening Modal to set the quantity
 addToCart(selectedItem){
-  this.cartItem = selectedItem;
+  let item = new Items();
+  item.name = selectedItem.name;
+  item.baseUnit = selectedItem.baseUnit;
+  item.pricePerUnit = selectedItem.pricePerUnit;
+  item.quantity = 1;
+  this.cartItem = item;
   console.log(this.cartItem);
-  CartPage.cartItems(selectedItem);
+  CartPage.cartItems(item);
 
 
 

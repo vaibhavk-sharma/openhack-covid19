@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { order } from 'src/shared/models/order.model';
+import { order, Items } from 'src/shared/models/order.model';
+import { OrderService } from 'src/shared/services/order.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
@@ -8,16 +10,29 @@ import { order } from 'src/shared/models/order.model';
 })
 export class CartPage implements OnInit {
 
-  order: any = [];
+  private  order: order[];
+  static items : Items[] = [];
+  flag=false;
+  static flag: boolean;
+  itemList : Items[] =[];
 
-  constructor() { }
+  constructor(  private formBuilder: FormBuilder) { 
+  }
 
-  ngOnInit() {
+  ngOnInit()
+  {
+    this.itemList=CartPage.items;
+    
   }
 
   static cartItems(item : any) {
-    
-    console.log(JSON.stringify(item));
+    this.flag=true;
+    this.items.push(item);
+    console.log(this.items);
+  
   }
+
+
+
 
 }

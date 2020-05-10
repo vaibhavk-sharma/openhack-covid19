@@ -52,10 +52,21 @@
   <ion-router-outlet id="main"></ion-router-outlet>
 
   <!-- Items in cart -->
-  <ion-content>
-    <ion-card>
-      <ion-card-header>
-        
-      </ion-card-header>
+  <ion-content *ngIf="itemList">
+    <ion-card *ngFor="let item of itemList" color="light">
+      <ion-card-content>
+        <h1>{{item.name}}</h1>
+        <h3>PricePerUnit &nbsp;
+         <ion-chip>{{item.pricePerUnit}}</ion-chip>
+        </h3>
+        <ion-label color="dark" position="floating">Quantity</ion-label>
+        <ion-chip><ion-input color="dark" placeholder="1"></ion-input></ion-chip>
+       </ion-card-content> 
+      
     </ion-card>
   </ion-content>
+
+  <ion-footer>
+    <ion-button size="block" color="dark">Initiate Order</ion-button>
+  </ion-footer>
+ 
