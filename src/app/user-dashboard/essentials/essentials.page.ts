@@ -122,7 +122,7 @@ addToCart(selectedItem){
   item.quantity = 1;
   this.cartItem = item;
   console.log(this.cartItem);
-  CartPage.cartItems(item,this.order.supplierId);
+  CartPage.cartItems(item,this.supplierId);
 }
 viewCart(){
   this.router.navigateByUrl('/user-dashboard/cart');
