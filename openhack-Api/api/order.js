@@ -12,6 +12,9 @@ exports.GetSupplier = (req,res) => {
                 "type":"Supplier"
             },
             {
+                "isUserVerified":true
+            },
+            {
                 "communityId":{
                     "$elemMatch":{
                         "$eq":communityId
@@ -34,6 +37,7 @@ exports.GetSupplier = (req,res) => {
 exports.GetSupplierItems = (req,res) => {
     let db = db_utlity.getDbInstance(db_constants["SUPPLIERINFODB"]);
     let supplierId=req.body.supplierId;
+    console.log('1',supplierId)
     let selector = {};
     if (supplierId) {
         selector['supplierId'] = supplierId;
@@ -54,12 +58,13 @@ exports.CreateOrder = (req,res) => {
     let db = db_utlity.getDbInstance(db_constants["ORDERDB"]);
     
     let order =  {
-        items:req.body.items,
-        quantity : req.body.quantity,
+        items:req.body.items,        
         status:'initiated',
-        residentId:req.body.residentId
+        residentId:req.body.residentId,
+        supplierId:req.body.supplierId,
+        totalBill:0
     };
-    
+    console.log('2',supplierId)
     db.insert(order, (err, result) => {
         if (err) {
             console.log('Error occurred: ' + err.message, 'insert failed');
