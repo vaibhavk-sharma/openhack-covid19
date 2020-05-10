@@ -64,7 +64,6 @@ exports.CreateOrder = (req,res) => {
         supplierId:req.body.supplierId,
         totalBill:0
     };
-    console.log('2',supplierId)
     db.insert(order, (err, result) => {
         if (err) {
             console.log('Error occurred: ' + err.message, 'insert failed');
@@ -75,6 +74,11 @@ exports.CreateOrder = (req,res) => {
                 message:"Order placed successfully", statusCode: 201 });
         }
     });
+}
+
+//Check the order status and initiate the payment
+exports.ChangePaymentStatus = (req,res) => {
+    
 }
 
 
