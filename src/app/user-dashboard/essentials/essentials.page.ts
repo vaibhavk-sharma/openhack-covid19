@@ -121,7 +121,6 @@ addToCart(selectedItem){
   item.pricePerUnit = selectedItem.pricePerUnit;
   item.quantity = 1;
   this.cartItem = item;
-  this.order.supplierId = this.supplierId;
   console.log(this.cartItem);
   CartPage.cartItems(item,this.order.supplierId);
 }
