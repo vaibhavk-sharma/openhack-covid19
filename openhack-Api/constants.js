@@ -1,6 +1,7 @@
 const Databases = {
     "COMMUNITY": "community",
-    "RESIDENTDB-USERS": "residentsdb-users"
+    "RESIDENTDB-USERS": "residentsdb-users",
+    "ORDERS":"orders"
 }
 
 module.exports = Databases;
