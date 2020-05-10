@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { order, Items } from 'src/shared/models/order.model';
+import { Order, Items } from 'src/shared/models/order.model';
 import { OrderService } from 'src/shared/services/order.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { menuController } from '@ionic/core';
@@ -13,20 +13,24 @@ import { Router } from '@angular/router';
 })
 export class CartPage implements OnInit {
 
-  private  order: order[];
-  static items : Items[] = [];
-  flag=false;
+  private order: Order;
+  static items: Items[] = [];
+  flag = false;
   static flag: boolean;
-  itemList : Items[] =[];
-  loggedInUser: any;
+  itemList: Items[] = [];
+  static supplierId: string;
+  supplier_Id:string;
+  successMessage:string;
+  loggedInUser:any;
 
   constructor(  private formBuilder: FormBuilder,private router: Router,
-    private storage: Storage) { 
+    private storage: Storage,private orderService:OrderService) { 
   }
 
   ngOnInit()
   {
     this.itemList=CartPage.items;
+    this.supplier_Id = CartPage.supplierId;
 
     this.storage.get('local_community_user').then(data => {
       if (data != null) {
@@ -37,8 +41,18 @@ export class CartPage implements OnInit {
       .catch(err => {
         console.log(err.message);
       });
-    
   }
+    
+createPost(order){
+  this.order.items = this.itemList;
+  this.order.supplierId = this.supplier_Id;
+  this.order.residentId = this.loggedInUser.residentId;
+  this.orderService.createOrder(order).subscribe((data) => {
+    this.successMessage = data.message;
+    this.itemList =[];
+  })
+}
+  
 
   static cartItems(item : any) {
     let result = this.items.find(obj => {
@@ -53,7 +67,6 @@ export class CartPage implements OnInit {
      }
     
     console.log(this.items);
-  
   }
 
   async openMenu() {

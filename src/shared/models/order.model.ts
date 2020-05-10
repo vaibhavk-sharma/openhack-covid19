@@ -1,7 +1,7 @@
 import { OrderStatus } from '../constants';
 
-export class order{
-    items: Items;
+export class Order{
+    items: Items[];
     status: OrderStatus;
     supplierId: string;
     residentId: string;

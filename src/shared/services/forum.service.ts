@@ -14,14 +14,12 @@ export class ForumService {
   constructor(private http: HttpClient) { }
 
   CreatePost(forum: forum): Observable<any> {
-    console.log('Service me naache');
     return this.http.post(ApiRoutes.CreatePost, forum);
   }
   ViewAllPost(communityId: string): Observable<any> {
     return this.http.post(ApiRoutes.ViewAllPost, { communityId: communityId });
   }
   DeletePost(contentId: string, latestrev: string): Observable<any> {
-    console.log('inside service', contentId, latestrev);
     let data = {
       contentId: contentId,
       latestrev: latestrev
