@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { ForumService } from 'src/shared/services/forum.service';
 import { toastController } from '@ionic/core';
+import { menuController } from '@ionic/core';
 
 @Component({
   selector: 'app-forum',
@@ -52,6 +53,23 @@ export class ForumPage implements OnInit {
 
   }
 
+
+  async openMenu() {
+    await menuController.close();
+    await menuController.open();
+   console.log(menuController.getOpen())
+  }
+
+  admin() {
+    this.storage.set('local_community_user', this.loggedInUser)
+    this.router.navigateByUrl('admin');
+  }
+
+  logout() {
+    this.router.navigateByUrl('home')
+  }
+
+
   CreatePost() {
     if (this.postForm.valid && this.postForm != null) {
       let forumInput = new forum;
@@ -70,7 +88,6 @@ export class ForumPage implements OnInit {
           status: 'accept'
         }
         this.flag = false;
-
         this.handleButtonClick(messageObj);
 
         // this.router.navigate(["createPost"]);
