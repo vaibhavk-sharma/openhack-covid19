@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 import { menuController } from '@ionic/core';
 import { OrderService } from 'src/shared/services/order.service';
 import { CartPage } from 'src/app/user-dashboard/cart/cart.page'
-import { Items } from 'src/shared/models/order.model';
+import { Order,Items } from 'src/shared/models/order.model';
 
 @Component({
   selector: 'app-essentials',
@@ -14,9 +14,11 @@ import { Items } from 'src/shared/models/order.model';
 export class EssentialsPage implements OnInit {
 
   supplierList:any;
+  order:Order;
   loggedInUser: any;
   itemsList : any;
   flag : boolean;
+  supplierId:string;
   cartItem : any;
   constructor(private router: Router, 
     private storage: Storage,
@@ -61,6 +63,7 @@ export class EssentialsPage implements OnInit {
   getSupplier() {
     this.orderService.getSupplier(this.loggedInUser.communityId).subscribe(
       (data) => {
+        
         // console.log(JSON.stringify(data))
         if (data != null && data.length > 0) {
           // console.log("YIOEEEEEEE")
@@ -84,6 +87,7 @@ export class EssentialsPage implements OnInit {
     console.log(event.detail.value);
     this.orderService.getSupplierItems(event.detail.value).subscribe(
       (data) => {
+        this.supplierId = event.detail.value;
         // console.log(JSON.stringify(data))
         if (data != null && data.length > 0) {
           // console.log("YIOEEEEEEE")
@@ -117,18 +121,10 @@ addToCart(selectedItem){
   item.pricePerUnit = selectedItem.pricePerUnit;
   item.quantity = 1;
   this.cartItem = item;
+  this.order.supplierId = this.supplierId;
   console.log(this.cartItem);
-  CartPage.cartItems(item);
-
-
-
+  CartPage.cartItems(item,this.order.supplierId);
 }
-//Creating order for getting the items from a particular supplier
-createOrder(order){
-
-
-}
-
 viewCart(){
   this.router.navigateByUrl('/user-dashboard/cart');
 }
