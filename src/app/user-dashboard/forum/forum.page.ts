@@ -57,11 +57,9 @@ export class ForumPage implements OnInit {
       let forumInput = new forum;
       forumInput.content = this.postForm.value.content;
       forumInput.title = this.postForm.value.title;
-      console.log('Ye input h', forumInput.content, forumInput.title);
       forumInput.communityId = this.loggedInUser.communityId;
       forumInput.whenCreated = new Date();
       this.forumService.CreatePost(forumInput).subscribe((data) => {
-        console.log('Ye rha data', data);
         this.contentId = data.result.id;
         this.latestrev = data.result.rev;
         console.log(this.contentId, this.latestrev)
