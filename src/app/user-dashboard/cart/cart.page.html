@@ -52,7 +52,7 @@
   <ion-router-outlet id="main"></ion-router-outlet>
 
   <!-- Items in cart -->
-  <ion-content *ngIf="itemList">
+  <ion-content *ngIf="itemList" class="cart_bg">
     <ion-card *ngFor="let item of itemList" color="light">
       <ion-card-content>
         <h1>{{item.name}}</h1>
@@ -64,9 +64,10 @@
        </ion-card-content> 
       
     </ion-card>
-  </ion-content>
+ 
 
   <ion-footer>
     <ion-button size="block" color="dark">Initiate Order</ion-button>
   </ion-footer>
+  </ion-content>
  

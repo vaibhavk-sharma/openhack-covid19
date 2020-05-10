@@ -66,5 +66,17 @@ export class HomeTabPage implements OnInit {
     
     this.logout();
   }
+
+  forum(){
+    this.router.navigateByUrl('user-dashboard/forum')
+  }
+
+  grocery(){
+    this.router.navigateByUrl('user-dashboard/essentials')
+  }
+
+  order(){
+    this.router.navigateByUrl('user-dashboard/cart')
+  }
 }
 

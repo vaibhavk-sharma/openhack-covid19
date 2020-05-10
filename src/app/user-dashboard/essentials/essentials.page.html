@@ -52,7 +52,7 @@
   <ion-router-outlet id="main"></ion-router-outlet>
 
   <!-- Drop down to select the supplier -->
-  <ion-content fullscreen>
+  <ion-content fullscreen class="essentials_bg">
     <ion-list>
       <ion-item color="warning">
         <ion-label>Supplier</ion-label>
@@ -65,7 +65,7 @@
 
 
   <!-- Viewing Items of selected supplier -->
-  <ion-content *ngIf="itemsList && itemsList.length>0">
+  <ion-content *ngIf="itemsList && itemsList.length>0" class="item_bg">
     <ion-list>
       <ion-list-header color="dark"><h3>Items Details</h3></ion-list-header>
       <ion-item *ngFor="let item of itemsList" color="light" (click)="addToCart(item)">

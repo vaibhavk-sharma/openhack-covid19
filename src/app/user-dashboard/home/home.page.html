@@ -118,12 +118,12 @@
 
 
 
-  <ion-chip outline color="dark">
+  <ion-chip outline color="dark" (click)="forum()">
     <ion-icon name="videocam" color="dark"></ion-icon>
     <ion-label color="dark">Community Forum</ion-label>
   </ion-chip>
 
-  <ion-chip outline color="tertiary">
+  <ion-chip outline color="tertiary" (click)="grocery()">
     <ion-icon name="restaurant" color="tertiary"></ion-icon>
     <ion-label color="tertiary">Get Essentials</ion-label>
   </ion-chip>
@@ -131,6 +131,17 @@
   <ion-chip outline color="danger">
     <ion-icon name="pin" color="danger"></ion-icon>
     <ion-label color="danger">Looking for Services</ion-label>
+  </ion-chip>
+
+  <ion-chip outline color="success" (click)="order()">
+    <ion-icon name="cart" color="success"></ion-icon>
+    <ion-label color="success">Place Order</ion-label>
+  </ion-chip>
+
+  
+  <ion-chip outline color="primary">
+    <ion-icon name="hourglass" color="primary"></ion-icon>
+    <ion-label color="primary">Pending Orders</ion-label>
   </ion-chip>
 
 </ion-content>
