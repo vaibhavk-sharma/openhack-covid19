@@ -14,6 +14,7 @@ const apiRoutes = require('./api');
 const apiUserRoutes = require('./api/user');
 const apiCommunityRoutes = require('./api/community');
 const apiSupplierRoutes = require('./api/supplier');
+const apiOrderRoutes = require('./api/order');
 
 /**
  * Create Express server.
@@ -29,6 +30,7 @@ app.use(bodyParser.json());
 /**
  * Api routes.
  */
+
 app.get('/api', apiRoutes.index);
 app.post('/api/user/getAllUsers',apiUserRoutes.GetAllUsers);
 app.post('/api/user/findUserByEmail',apiUserRoutes.FindUserbyEmailId);
@@ -37,6 +39,10 @@ app.post('/api/user/deleteRejectedUser',apiUserRoutes.DeleteRejectedUser);
 app.post('/api/user/registerUser',apiUserRoutes.RegisterUser);
 app.post('/api/community/filterCommunityBySearchTerm',apiCommunityRoutes.FilterBySearchTerm);
 app.post('/api/community/registerCommunity',apiCommunityRoutes.RegisterCommunity);
+app.post('/api/order/getOrders', apiOrderRoutes.getOrders);
+app.post('/api/order/addAttachment', apiOrderRoutes.addAttachement);
+app.post('/api/order/getAttachment', apiOrderRoutes.getAttachment);
+
 app.post('/api/supplier/GetSupplierInfoBySupplierId',apiSupplierRoutes.GetSupplierInfoBySupplierId);
 app.post('/api/supplier/SaveSupplierItemInfo',apiSupplierRoutes.SaveSupplierItemInfo);
 app.get('*', apiRoutes.index);

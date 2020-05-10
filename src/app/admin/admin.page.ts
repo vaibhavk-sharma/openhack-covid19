@@ -145,7 +145,7 @@ export class AdminPage implements OnInit {
     });
     
     await toast.present();
-    location.reload();
+    this.getUnverifiedUsers();
     
   }
 
