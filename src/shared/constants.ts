@@ -13,12 +13,18 @@ export class ApiRoutes {
     public static GetSupplier = getLocalDomain() + "api/order/getSupplier";
     public static GetSupplierItems = getLocalDomain() + "api/order/getSupplier";
     public static CreateOrder = getLocalDomain() + "api/order/createOrder";
-    
-   
- 
-
 }
 
 function getLocalDomain(){
     return "http://localhost:8080/";
+}
+
+export class OrderStatus{
+    public static Initiated = "inititated";
+    public static Confirmed = "confirmed";
+    public static NotConfirmed = "notconfirmed";
+    public static PaymentInitiated = "paymentinitiated";
+    public static PaymentVerified = "paymentverified";
+    public static Cancelled = "cancelled";
+    public static Completed = "completed";
 }
