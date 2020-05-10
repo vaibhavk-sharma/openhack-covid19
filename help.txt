@@ -84,6 +84,17 @@ Following are documents in DB
 		- CommunityId
 
 
+	SupplierInfoDocument
+	       	ItemInfoDocument
+			- _Id	
+			- SupplierId
+			- Items [{name:, quantity:,baseUnites:, PricePerItem:}]
+		ServicesInfoDocument			
+			- SupplierId
+			- Services[{name:, PricePerServices:}]
+		
+
+
 Balaji -
 Registration
 Home page…  

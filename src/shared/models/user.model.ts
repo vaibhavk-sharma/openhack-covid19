@@ -22,4 +22,5 @@ export class NativeUserStorageInfo{
     public email: string;
     public displayName: string;
     public idToken: string;
+    public type: string;
 }

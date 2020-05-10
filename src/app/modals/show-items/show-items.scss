@@ -1,0 +1,13 @@
+.list-items{
+    font-size:18px;
+}
+
+ion-card-content{
+    padding-left:0px;
+    background-color: #64b5f6;
+
+    &  > ion-toolbar{
+        --ion-background-color: #64b5f6;
+        color:white;
+    }
+}

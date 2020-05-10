@@ -6,7 +6,7 @@ import { HomeTabPage } from './home/home.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'supplier-dashboard',
     component: UserDashboardPage,
     children: [
       {

@@ -13,7 +13,7 @@ import { UserService } from 'src/shared/services/user.service';
 })
 export class HomePage implements OnInit {
 
-  user: any
+  user: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,8 +27,32 @@ export class HomePage implements OnInit {
     this.route.data
       .subscribe((data: NativeUserStorageInfo) => {
         if (data != null && data.idToken != null) {
-          this.router.navigateByUrl('user-dashboard');
-        }
+        this.userService.findUserbyEmailId(this.user.email).subscribe(
+          (data) => {
+            //console.log(JSON.stringify(data))
+            if (data != null && data.length > 0) {
+              // this.user._id = data[0]._id;
+              // this.user._revId = data[0]._revId;
+              //this.nativeStorageUpdate(this.user);
+              this.user = data[0];
+              this.storage.set('local_community_user', this.user);
+              if(this.user.type=='Resident'){
+                this.router.navigateByUrl('user-dashboard');
+              }            
+              else{
+                this.router.navigateByUrl('supplier-dashboard');
+              } 
+            }
+            else {
+              this.storage.set('local_community_user', this.user);
+              this.router.navigateByUrl('register');
+            }
+          },
+          (err) => {
+            this.router.navigate(["error"])
+            console.log("ERROR OCCURED", err.message, JSON.stringify(err, null, '\t'));
+          }
+        )}
       });
   }
 
@@ -52,8 +76,8 @@ export class HomePage implements OnInit {
     //  .then(user => {
     //    this.user = user;
     this.user = {
-      name: "George Maharis",
-      email: "George_Maharis@infosys.com",
+      name: "Tony Starks",
+      email: "TonyStarkz@gmail.com",
       token: "hb5amal386g9t7t10mght08hovkeo5m0"
     };
 
@@ -66,7 +90,12 @@ export class HomePage implements OnInit {
           //this.nativeStorageUpdate(this.user);
           this.user = data[0];
           this.storage.set('local_community_user', this.user);
-          this.router.navigateByUrl('user-dashboard');
+          if(this.user.type=='Resident'){
+            this.router.navigateByUrl('user-dashboard');
+          }            
+          else{
+            this.router.navigateByUrl('supplier-dashboard');
+          } 
         }
         else {
           this.storage.set('local_community_user', this.user);
@@ -88,7 +117,8 @@ export class HomePage implements OnInit {
     this.nativeStorage.setItem('community_user', {
       name: user.name,
       email: user.email,
-      token: user.idToken
+      token: user.idToken,
+      type: user.type
     })
       .then(() => {
         console.log('native storage updated');

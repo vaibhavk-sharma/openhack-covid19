@@ -13,6 +13,7 @@ dotenv.config({ path: 'developmet.env' });
 const apiRoutes = require('./api');
 const apiUserRoutes = require('./api/user');
 const apiCommunityRoutes = require('./api/community');
+const apiSupplierRoutes = require('./api/supplier');
 
 /**
  * Create Express server.
@@ -36,6 +37,8 @@ app.post('/api/user/deleteRejectedUser',apiUserRoutes.DeleteRejectedUser);
 app.post('/api/user/registerUser',apiUserRoutes.RegisterUser);
 app.post('/api/community/filterCommunityBySearchTerm',apiCommunityRoutes.FilterBySearchTerm);
 app.post('/api/community/registerCommunity',apiCommunityRoutes.RegisterCommunity);
+app.post('/api/supplier/GetSupplierInfoBySupplierId',apiSupplierRoutes.GetSupplierInfoBySupplierId);
+app.post('/api/supplier/SaveSupplierItemInfo',apiSupplierRoutes.SaveSupplierItemInfo);
 app.get('*', apiRoutes.index);
 /**
  * Error Handler.

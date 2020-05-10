@@ -1,0 +1,66 @@
+<div class="page-content">
+
+    <ion-card>
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-button>
+                    <ion-icon class="home-page-icons" name="newspaper-outline"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+            <ion-title><span>My Transactions</span></ion-title>
+        </ion-toolbar>
+
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>Initialized</ion-col>
+                    <ion-col>Completed</ion-col>
+                    <ion-col>Cancelled</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>25</ion-col>
+                    <ion-col>15</ion-col>
+                    <ion-col>10</ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button>
+                <ion-icon class="home-page-icons" name="cart-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title><span>View Orders</span></ion-title>
+    </ion-toolbar>
+    <ion-card (click)="navigateExternal('orders')">
+        <ion-card-header>
+            <ion-card-title>Click here to view current orders</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            <p>You can view the orders here to facilitate purchase of the items. your store here. Please keep it
+                uptodate to keep it in sync with your store</p>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button>
+                <ion-icon class="home-page-icons" name="add-circle-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title><span>Update Stock</span></ion-title>
+    </ion-toolbar>
+    <ion-card (click)="navigateExternal('updateStock')">
+        <ion-card-header>
+            <ion-card-title>Click here to Add/Updates Items</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            <p>You can add or update the items for your store here. Please keep the stock info upto date to keep it in
+                sync with your store</p>
+        </ion-card-content>
+    </ion-card>
+</div>

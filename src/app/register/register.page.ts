@@ -124,11 +124,17 @@ export class RegisterPage implements OnInit {
   private registerUser(newUser: any) {
     this.userService.registerUser(newUser).subscribe((data) => {
       if (data != null && data._id != null) {
+        this.user = newUser;
         this.user._id = data._id;
-        this.user._revId = data._revId;
+        this.user._revId = data._revId;        
         this.storage.set('local_community_user', this.user);
         console.log(JSON.stringify(this.user, null, '\t'));
-        this.router.navigateByUrl('user-dashboard');
+        if(this.user.type=='Resident'){
+          this.router.navigateByUrl('user-dashboard');
+        }            
+        else{
+          this.router.navigateByUrl('supplier-dashboard');
+        }
       }
       else {
         this.presentAlert();
@@ -227,8 +233,3 @@ export class RegisterPage implements OnInit {
     return await modal.present();
   }
 }
-// //Navigating to homepage after registration
-// homepage(){
-//   this.router.navigateByUrl('signin')
-// }
-
