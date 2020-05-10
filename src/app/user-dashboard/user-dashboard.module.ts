@@ -10,6 +10,7 @@ import { UserDashboardPage } from './user-dashboard.page';
 import { HomeTabPage } from './home/home.page';
 import { EssentialsPage } from './essentials/essentials.page';
 import { ForumPage } from './forum/forum.page';
+import { CartPage } from './cart/cart.page';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { ForumPage } from './forum/forum.page';
     UserDashboardPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [UserDashboardPage, HomeTabPage,EssentialsPage,ForumPage]
+  declarations: [UserDashboardPage, HomeTabPage,EssentialsPage,ForumPage,CartPage]
 })
 export class UserDashboardPageModule {}

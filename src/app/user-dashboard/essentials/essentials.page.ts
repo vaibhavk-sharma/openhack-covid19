@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { menuController } from '@ionic/core';
 import { OrderService } from 'src/shared/services/order.service';
+import { CartPage } from 'src/app/user-dashboard/cart/cart.page'
+import { Items } from 'src/shared/models/order.model';
 
 @Component({
   selector: 'app-essentials',
@@ -13,10 +15,13 @@ export class EssentialsPage implements OnInit {
 
   supplierList:any;
   loggedInUser: any;
+  itemsList : any;
+  flag : boolean;
+  cartItem : any;
   constructor(private router: Router, 
     private storage: Storage,
     private orderService: OrderService) {
-      
+      this.flag=false;
      }
 
   ngOnInit() {
@@ -62,11 +67,6 @@ export class EssentialsPage implements OnInit {
           this.supplierList = data;   
         }
         else {
-          /// GENERATE ALERT FOR NO USER IN COMMUNITY
-          // let messageObj = {
-          //   message : 'Sorry! No Users to View',
-          //   status : 'sorry'
-          //}
           console.log("No supplier present")
           
         }
@@ -80,9 +80,58 @@ export class EssentialsPage implements OnInit {
 
   // To view items related to a particular supplier
   getSupplierItems(event){
+    //console.log(event.detail);
     console.log(event.detail.value);
+    this.orderService.getSupplierItems(event.detail.value).subscribe(
+      (data) => {
+        // console.log(JSON.stringify(data))
+        if (data != null && data.length > 0) {
+          // console.log("YIOEEEEEEE")
+          this.itemsList = data[0].items; 
+          console.log(this.itemsList)  
+        }
+        else {
+          /// GENERATE ALERT FOR NO USER IN COMMUNITY
+          // let messageObj = {
+          //   message : 'Sorry! No Users to View',
+          //   status : 'sorry'
+          //}
+          console.log("No items present for this supplier")
+          this.itemsList=[];
+          
+        }
+      },
+      (err) => {
+        this.router.navigate(["error"])
+        console.log("ERROR OCCURED", err.message, JSON.stringify(err, null, '\t'));
+      }
+    )
   }
 
+
+//Opening Modal to set the quantity
+addToCart(selectedItem){
+  let item = new Items();
+  item.name = selectedItem.name;
+  item.baseUnit = selectedItem.baseUnit;
+  item.pricePerUnit = selectedItem.pricePerUnit;
+  item.quantity = 1;
+  this.cartItem = item;
+  console.log(this.cartItem);
+  CartPage.cartItems(item);
+
+
+
+}
+//Creating order for getting the items from a particular supplier
+createOrder(order){
+
+
+}
+
+viewCart(){
+  this.router.navigateByUrl('/user-dashboard/cart');
+}
 
 
 }

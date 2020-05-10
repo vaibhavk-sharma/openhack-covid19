@@ -11,7 +11,7 @@ export class ApiRoutes {
     public static CreatePost = getLocalDomain() + "api/forum/createPost";
     public static DeletePost = getLocalDomain() + "api/forum/deletePost";
     public static GetSupplier = getLocalDomain() + "api/order/getSupplier";
-    public static GetSupplierItems = getLocalDomain() + "api/order/getSupplier";
+    public static GetSupplierItems = getLocalDomain() + "api/order/getSupplierItems";
     public static CreateOrder = getLocalDomain() + "api/order/createOrder";
 }
 
