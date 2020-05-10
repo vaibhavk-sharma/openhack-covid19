@@ -4,20 +4,27 @@ const db_constants = require("../constants");
 // Getting all the supplier details belonging to the user community
 exports.GetSupplier = (req,res) => {
     console.log("1.GetsupplierForCommunity");
-    let db = db_utlity.getDbInstance(db_constants["SUPPLIERINFODB"]);
+    let db = db_utlity.getDbInstance(db_constants["RESIDENTDB-USERS"]);
     let communityId=req.body.communityId;
     let selector = {
-        "communityId": {
-            "$elemMatch": {
-               "$eq": communityId
+        "$and":[
+            {
+                "type":"Supplier"
+            },
+            {
+                "communityId":{
+                    "$elemMatch":{
+                        "$eq":communityId
+                    }
+                }
             }
-         }
+        ]
     };
     db.find({ selector }, (err, documents) => {
         if (err) {
             res.json(err);
         } else {
-            console.log(documents.docs[0]._id);
+            console.log(documents.docs[0]);
             res.json(documents.docs);
         }
     });
@@ -29,7 +36,7 @@ exports.GetSupplierItems = (req,res) => {
     let supplierId=req.body.supplierId;
     let selector = {};
     if (supplierId) {
-        selector['_id'] = supplierId;
+        selector['supplierId'] = supplierId;
     }
     db.find({
         'selector': selector
@@ -45,10 +52,14 @@ exports.GetSupplierItems = (req,res) => {
 // Select the item to create an order
 exports.CreateOrder = (req,res) => {
     let db = db_utlity.getDbInstance(db_constants["ORDERDB"]);
+    
     let order =  {
         items:req.body.items,
-        quantity : req.body.quantity
+        quantity : req.body.quantity,
+        status:'initiated',
+        residentId:req.body.residentId
     };
+    
     db.insert(order, (err, result) => {
         if (err) {
             console.log('Error occurred: ' + err.message, 'insert failed');
