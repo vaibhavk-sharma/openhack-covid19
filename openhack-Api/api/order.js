@@ -10,10 +10,6 @@ exports.GetSupplier = (req,res) => {
         "$and":[
             {
                 "type":"Supplier"
-                
-            },
-            {
-            "isUserVerified":true
             },
             {
                 "isUserVerified":true
@@ -31,7 +27,7 @@ exports.GetSupplier = (req,res) => {
         if (err) {
             res.json(err);
         } else {
-            console.log(documents.docs);
+            console.log(documents.docs[0]);
             res.json(documents.docs);
         }
     });
@@ -39,10 +35,8 @@ exports.GetSupplier = (req,res) => {
 
 // Getting all the items supplied by that supplier
 exports.GetSupplierItems = (req,res) => {
-    console.log("2.GetsupplierItems");
     let db = db_utlity.getDbInstance(db_constants["SUPPLIERINFODB"]);
     let supplierId=req.body.supplierId;
-    console.log('1',supplierId)
     let selector = {};
     if (supplierId) {
         selector['supplierId'] = supplierId;
@@ -82,8 +76,8 @@ exports.CreateOrder = (req,res) => {
 }
 
 //Check the order status and initiate the payment
-exports.ChangePaymentStatus = (req,res) => {
-    
+exports.UpdatePaymentStatus = (req,res) => {
+    let db = db_utlity.getDbInstance(db_constants["ORDERDB"]);
 }
 
 
