@@ -1,0 +1,13 @@
+applications:
+- buildpack: sdk-for-nodejs
+  command: npm start
+  domain: null
+  host: null
+  instances: 1
+  memory: 256M
+  name: openhackApi
+  routes:
+  - route: digicomm-api.eu-gb.cf.appdomain.cloud
+  services:
+  - Cloudant-OpenHack2020
+  timeout: 180

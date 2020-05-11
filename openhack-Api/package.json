@@ -9,7 +9,7 @@
   "license": "MIT",
   "author": "covid19 devs",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "@cloudant/cloudant": "^4.2.4",
@@ -23,7 +23,7 @@
     "lusca": "^1.6.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+ 
   },
   "engines": {
     "node": ">=10.19.0",
