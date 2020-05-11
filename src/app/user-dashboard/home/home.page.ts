@@ -52,6 +52,7 @@ export class HomeTabPage {
   }
 
   logout() {
+    this.storage.clear();
     this.router.navigateByUrl('home')
   }
 
@@ -77,6 +78,10 @@ export class HomeTabPage {
 
   order(){
     this.router.navigateByUrl('user-dashboard/cart')
+  }
+
+  myOrders(){
+    this.router.navigateByUrl('user-dashboard/myorders');
   }
 }
 

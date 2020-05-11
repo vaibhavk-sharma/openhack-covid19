@@ -50,7 +50,7 @@ export class ViewBillModal{
   }
 
   verifyPayment(){
-    this.order.status = OrderStatus.Completed;
+    this.order.status = OrderStatus.OutForDelivery;
     this.popOverController.dismiss({ order: this.order });
   }
 }

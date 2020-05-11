@@ -55,6 +55,7 @@ export class EssentialsPage {
   }
 
   logout() {
+    this.storage.clear();
     this.router.navigateByUrl('home')
   }
 

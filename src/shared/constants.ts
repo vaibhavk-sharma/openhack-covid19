@@ -22,6 +22,7 @@ export class ApiRoutes {
 
 function getLocalDomain(){
     return "http://localhost:8080/";
+    //return "http://digicomm-api.eu-gb.cf.appdomain.cloud/";
 }
 
 export class OrderStatus {
@@ -30,6 +31,7 @@ export class OrderStatus {
     public static NotConfirmed = 'notconfirmed';
     public static PaymentInitiated = 'paymentinitiated';
     public static PaymentVerified = 'paymentverified';
+    public static OutForDelivery = 'outForDelivery';
     public static Cancelled = 'cancelled';
     public static Completed = 'completed';
 }

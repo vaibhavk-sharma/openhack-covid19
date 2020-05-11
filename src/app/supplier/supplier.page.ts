@@ -70,6 +70,7 @@ export class SupplierPage {
   }
 
   logout() {
+    this.storage.clear();
     this.router.navigateByUrl('home')
   }
 

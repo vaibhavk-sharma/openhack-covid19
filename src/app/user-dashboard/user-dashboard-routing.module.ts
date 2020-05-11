@@ -34,7 +34,7 @@ const routes: Routes = [
         component: ForumPage
       },
       {
-        path: 'yourorders',
+        path: 'myorders',
         component: YourOrdersPage
       }
     ]

@@ -16,7 +16,8 @@ export class YourOrdersPage {
   loggedInUser: any;
   confirmedOrders = [];
   notConfirmedOrders = [];
-  orderStatus = OrderStatus.Confirmed;
+  outForDeliveryOrders = [];
+  orderStatus = OrderStatus.OutForDelivery;
   constructor(
     private storage: Storage,
     private orderService: OrdersService,
@@ -29,7 +30,7 @@ export class YourOrdersPage {
     this.storage.get('local_community_user').then(data => {
       if (data != null) {
         this.loggedInUser = data;
-        this.getConfirmedOrders(OrderStatus.Confirmed);
+        this.getOutForDeliveryOrders(OrderStatus.OutForDelivery);
       }
     })
       .catch(err => {
@@ -44,6 +45,23 @@ export class YourOrdersPage {
     else if (this.orderStatus == OrderStatus.NotConfirmed) {
       this.getNotConfirmedOrders(OrderStatus.NotConfirmed);
     }
+    else if(this.orderStatus == OrderStatus.OutForDelivery){
+      this.getOutForDeliveryOrders(OrderStatus.OutForDelivery);
+    }
+  }
+
+  getOutForDeliveryOrders(orderStatus: OrderStatus) {
+    let orderInput = new GetOrdersInput();
+    orderInput.status = orderStatus;
+    orderInput.residentId = this.loggedInUser._id;
+    this.orderService.GetOrdersByStatus(orderInput).subscribe((orders) => {
+      if (orders && orders.length > 0) {
+        this.outForDeliveryOrders = orders;
+      }
+    },
+      (err) => {
+        this.presentAlert();
+      })
   }
 
   getConfirmedOrders(orderStatus: OrderStatus) {
@@ -144,6 +162,17 @@ export class YourOrdersPage {
     this.orderService.UpdateOrderStatus(this.confirmedOrders[index]).subscribe((data) => {
       this.confirmedOrders[index]._rev = data._revId;
       this.notConfirmedOrders = this.notConfirmedOrders.filter(x => x.status == OrderStatus.NotConfirmed);
+    },
+      (err) => {
+        this.presentAlert();
+      })
+  }
+
+  receivedOrder(order: any, index: any) {
+    this.outForDeliveryOrders[index].status = OrderStatus.Completed;
+    this.orderService.UpdateOrderStatus(this.outForDeliveryOrders[index]).subscribe((data) => {
+      this.outForDeliveryOrders[index]._rev = data._revId;
+      this.outForDeliveryOrders = this.outForDeliveryOrders.filter(x => x.status == OrderStatus.OutForDelivery);
     },
       (err) => {
         this.presentAlert();

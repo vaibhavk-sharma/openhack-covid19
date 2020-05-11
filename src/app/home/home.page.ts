@@ -11,7 +11,7 @@ import { UserService } from 'src/shared/services/user.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage {
 
   user: any;
 
@@ -23,7 +23,7 @@ export class HomePage implements OnInit {
     private nativeStorage: NativeStorage,
     private userService: UserService) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.route.data
       .subscribe((data: any) => {
         if (data != null && data.idToken != null) {
@@ -76,7 +76,7 @@ export class HomePage implements OnInit {
     //   name: "George Maharis",
     //   email: "George_Maharis@infosys.com",
     //   idToken: "hb5amal386g9t7t10mght08hovkeo5m0"
-    // };
+    // };    
 
     this.userService.findUserbyEmailId(googleUser.email).subscribe(
       (data) => {
@@ -94,6 +94,8 @@ export class HomePage implements OnInit {
           } 
         }
         else {
+          this.user = { email : googleUser.email };
+          this.user.idToken = googleUser.idToken;
           this.storage.set('local_community_user', this.user);
           this.router.navigateByUrl('register');
         }
