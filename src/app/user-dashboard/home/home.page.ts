@@ -1,27 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { menuController } from '@ionic/core';
 
 @Component({
   selector: 'app-home-tab',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomeTabPage implements OnInit {
+export class HomeTabPage {
 
-  menu = false;
+  
   loggedInUser: any;
   constructor(
     private alertController: AlertController,
     private router: Router, 
-    private storage: Storage) { }
+    private storage: Storage) {
+      
+     }
 
-  ngOnInit() {
+    ionViewWillEnter() {
+  
     this.storage.get('local_community_user').then(data => {
       if (data != null) {
         this.loggedInUser = data;
-        console.log(JSON.stringify(this.loggedInUser));
+        //console.log(JSON.stringify(this.loggedInUser));
         if(this.loggedInUser && !this.loggedInUser.isUserVerified && !this.loggedInUser.isAdmin){
           this.showUserVerifiedAlert();
         }
@@ -38,8 +42,8 @@ export class HomeTabPage implements OnInit {
     autoplay:true
    };
 
-  openMenu() {
-    this.menu = true;
+   async openMenu() {
+    await menuController.open();
   }
 
   admin() {
@@ -62,4 +66,17 @@ export class HomeTabPage implements OnInit {
     
     this.logout();
   }
+
+  forum(){
+    this.router.navigateByUrl('user-dashboard/forum')
+  }
+
+  grocery(){
+    this.router.navigateByUrl('user-dashboard/essentials')
+  }
+
+  order(){
+    this.router.navigateByUrl('user-dashboard/cart')
+  }
 }
+

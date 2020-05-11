@@ -14,6 +14,8 @@ const apiRoutes = require('./api');
 const apiUserRoutes = require('./api/user');
 const apiCommunityRoutes = require('./api/community');
 const apiOrderRoutes = require('./api/order');
+const apiForumRoutes = require('./api/forum');
+const apiSupplierRoutes = require('./api/supplier');
 
 /**
  * Create Express server.
@@ -31,17 +33,30 @@ app.use(bodyParser.json());
  */
 
 app.get('/api', apiRoutes.index);
+
 app.post('/api/user/getAllUsers',apiUserRoutes.GetAllUsers);
 app.post('/api/user/findUserByEmail',apiUserRoutes.FindUserbyEmailId);
 app.post('/api/user/updateUserAsVerified',apiUserRoutes.UpdateUserAsVerified);
 app.post('/api/user/deleteRejectedUser',apiUserRoutes.DeleteRejectedUser);
 app.post('/api/user/registerUser',apiUserRoutes.RegisterUser);
+
 app.post('/api/community/filterCommunityBySearchTerm',apiCommunityRoutes.FilterBySearchTerm);
 app.post('/api/community/registerCommunity',apiCommunityRoutes.RegisterCommunity);
+
 app.post('/api/order/getOrders', apiOrderRoutes.getOrders);
 app.post('/api/order/addAttachment', apiOrderRoutes.addAttachement);
 app.post('/api/order/getAttachment', apiOrderRoutes.getAttachment);
+app.post('/api/order/updateOrderStatus', apiOrderRoutes.UpdateOrderStatus);
 
+app.post('/api/supplier/GetSupplierInfoBySupplierId',apiSupplierRoutes.GetSupplierInfoBySupplierId);
+app.post('/api/supplier/SaveSupplierItemInfo',apiSupplierRoutes.SaveSupplierItemInfo);
+
+app.post('/api/forum/createPost',apiForumRoutes.CreatePost);
+app.post('/api/forum/viewAllPost',apiForumRoutes.ViewAllPost);
+app.post('/api/forum/deletePost',apiForumRoutes.DeletePostByAdmin);
+app.post('/api/order/getSupplier',apiOrderRoutes.GetSupplier);
+app.post('/api/order/getSupplierItems',apiOrderRoutes.GetSupplierItems);
+app.post('/api/order/createOrder',apiOrderRoutes.CreateOrder);
 app.get('*', apiRoutes.index);
 /**
  * Error Handler.

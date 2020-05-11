@@ -1,0 +1,31 @@
+.page-content{
+    margin-top:120px;
+}
+
+
+ion-title {
+    text-transform: capitalize;
+    margin-left: 0px;
+    padding-left: 0px;
+    & span{
+        font-size: 18px;
+    }
+    & a{
+        text-align: right;
+    }
+}
+
+.not-items-content{
+    background-color: #64b5f6;
+    color:white;
+    font-size:24px;
+    padding-top:5px;
+}
+
+ion-card-title{
+    font-size: 18px;   
+}
+
+.list-items{
+    font-size:18px;
+}

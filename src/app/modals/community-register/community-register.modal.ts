@@ -6,12 +6,12 @@ import { PopoverController } from '@ionic/angular';
   templateUrl: './community-register.html',
   styleUrls: ['./community-register.scss']
 })
-export class CommunityRegisterModal implements OnInit {
+export class CommunityRegisterModal{
   isSubmitted: boolean;
   communityForm: FormGroup;
   constructor(private formBuilder: FormBuilder,private popOverController: PopoverController) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.communityForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       address: this.formBuilder.group({

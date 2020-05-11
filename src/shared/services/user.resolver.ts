@@ -6,10 +6,10 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 @Injectable({
     providedIn: 'root'
 })
-export class UserInfoResolver implements Resolve<NativeUserStorageInfo> {
+export class UserInfoResolver implements Resolve<any> {
     constructor(private nativeStorage: NativeStorage) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<NativeUserStorageInfo> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<any> {
         return new Promise((resolve, reject) => {
             this.nativeStorage.getItem('community_user')
                 .then((data) => {

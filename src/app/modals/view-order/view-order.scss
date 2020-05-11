@@ -1,0 +1,27 @@
+.error-message{
+    font-size: 15px;
+    color: red;
+     & > p{
+        padding-left:15px;
+    }
+}
+
+
+ion-card{
+    margin:5px;
+    padding:5px;
+}
+
+.header-title{
+    margin-left: 2px;
+    text-align: center;
+    background-color: #263238;
+    color:white;
+    padding-top:15px;
+    padding-bottom: 15px;
+}
+
+ion-title{
+    margin-left: 0px;
+    padding-left: 0px;
+}

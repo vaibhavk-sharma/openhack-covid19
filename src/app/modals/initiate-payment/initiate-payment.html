@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Initiate Payment</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+<form [formGroup]="paymentForm" (ngSubmit)="paymentStart()" novalidate>
+    <ion-item>
+        <ion-label position="floating">Transactionid</ion-label>
+        <ion-input mode="ios" formControlName="transactionId" type="text"></ion-input>
+    </ion-item>
+    <span
+        *ngIf="!paymentForm.controls.transactionId.pristine && paymentForm.controls.transactionId.errors && paymentForm.controls.name.transactionId.required"
+        class="error-message">
+        <p>Transaction Id is required.</p>
+    </span>
+    <ion-row class="btn--register">
+        <ion-col>
+            <ion-button expand="full" type="submit" Size="default" class="btn--bottom"
+                [disabled]="!paymentForm.valid">
+                <p>Start Payment</p>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</form>
+</ion-content>

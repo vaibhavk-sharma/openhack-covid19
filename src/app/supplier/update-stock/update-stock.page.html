@@ -1,0 +1,56 @@
+<div class="page-content">
+  <div *ngIf="!supplierInfo || (supplierInfo && supplierInfo.items && supplierInfo.items.length == 0)">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button>
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title><span>Add items to Store</span></ion-title>
+    </ion-toolbar>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>You haven't added items yet</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content class="not-items-content">
+        <p>Please add items so that people can start purchasing from you.</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="supplierInfo && supplierInfo.items && supplierInfo.items.length > 0">
+    <ion-list>
+      <ion-list-header>
+        <ion-title>My Store items</ion-title>
+      </ion-list-header>
+      <ion-item *ngFor="let item of supplierInfo.items; let i = index;">
+        <ion-toolbar>
+          <ion-title class="list-items">{{item.name}}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="showItemInfo(item)">
+              <ion-icon name="information-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="editItemInfo(item,i)">
+              <ion-icon name="pencil-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="removeItem(item)">
+              <ion-icon name="close-circle-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-item>
+    </ion-list>
+  </div>
+</div>
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-button fill="clear" expand="full" color="light" (click)="newItemClick()">
+      <ion-icon slot="start" name="reader-outline"></ion-icon>
+      Add New Item
+    </ion-button>
+    <ion-button *ngIf="isItemUpdated" fill="clear" expand="full" color="light" (click)="saveItemChanges()">
+      <ion-icon slot="start" name="save-outline"></ion-icon>
+      Save Added Items
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

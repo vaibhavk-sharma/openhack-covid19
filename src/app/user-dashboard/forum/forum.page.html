@@ -1,0 +1,119 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button auto-hide="false" (click)="openMenu()"></ion-menu-button>
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <ion-button>
+      <ion-icon slot="icon-only" md="notifications"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+  <ion-title><span>Welcome to Forum</span></ion-title>
+</ion-toolbar>
+
+<!-- Menu bar for user -->
+
+  <ion-menu side="start" menuId="first" contentId="main">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button>
+            <ion-icon name="person-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title *ngIf="loggedInUser && loggedInUser.firstName"><span>{{loggedInUser.firstName}}</span></ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item lines="none" class="menu-items">
+          <ion-icon name="desktop" slot="start" color="warning"></ion-icon>
+          <ion-label>DashBoard</ion-label>
+        </ion-item>
+        <ion-item class="menu-items" lines="none" *ngIf="loggedInUser && loggedInUser.isAdmin" (click)="admin()">
+          <ion-icon name="person" slot="start" color="danger"></ion-icon>
+          <ion-label>Approve/Reject Users</ion-label>
+        </ion-item>
+        <ion-item class="menu-items" lines="none" (click)="logout()">
+          <ion-icon name="star-sharp" slot="start" color="dark"></ion-icon>
+          <ion-label>Give Feedback</ion-label>
+        </ion-item>
+        <ion-item class="menu-items" lines="none" (click)="logout()">
+          <ion-icon name="chatbox-ellipses-sharp" slot="start" color="dark"></ion-icon>
+          <ion-label>Contact Us</ion-label>
+        </ion-item>
+        <ion-item class="menu-items" slot="bottom" lines="none" (click)="logout()">
+          <ion-icon name="swap-horizontal-sharp" slot="start" color="dark"></ion-icon>
+          <ion-label>Log Out</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+
+<!-- View all the post to user -->
+<ion-content *ngIf="ForumList" class="forum_bg">
+  <ion-card *ngFor = "let list of ForumList" fill="outline" color="light">
+    <ion-card-header>
+      <ion-card-title>{{list.title}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{list.content}}
+    </ion-card-content>
+    <ion-footer>
+      
+      <ion-chip color="danger" color="danger">
+        <ion-icon name="thumbs-up-outline" color="danger"></ion-icon>
+        <ion-label color="danger">Like</ion-label>
+      </ion-chip>
+
+      <ion-chip *ngIf="loggedInUser.isAdmin" color="dark" (click)="deletePost(list)">
+        <ion-icon name="trash" color="dark"></ion-icon>
+        <ion-label color="dark">Trash</ion-label>
+      </ion-chip> 
+    </ion-footer>
+
+  </ion-card>
+</ion-content>
+
+<!-- creates post for user -->
+  <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+    <ion-fab-button color="dark">
+      <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      
+      <ion-card (click) = "fab($event)" style="width:calc(100hw-100px)">
+        <ion-card-header>Create Post</ion-card-header>
+        <form [formGroup]="postForm" (ngSubmit)="CreatePost()">
+
+          <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item>
+              <ion-label position="floating">Title <ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-input formControlName="title" type="text"></ion-input>
+            </ion-item>
+            <span
+              *ngIf="!postForm.controls.title.pristine && postForm.controls.title.errors && postForm.controls.title.errors.required"
+              class="error-message">
+              <ion-item>Title is required</ion-item>
+            </span>
+            <ion-item>
+              <ion-label position="floating">Content<ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-textarea mode="ios" formControlName="content" type="text"></ion-textarea>
+            </ion-item>
+            <span
+              *ngIf="!postForm.controls.content.pristine && postForm.controls.content.errors && postForm.controls.content.errors.required"
+              class="error-message">
+              <p>Content is required.</p>
+            </span>
+          </ion-list>
+          <ion-button expand="full" type="submit" Size="default" class="btn--bottom" [disabled]="!postForm.valid">
+            <ion-icon slot="start" name="business-outline"></ion-icon>
+            <p>Create Post</p>
+          </ion-button>
+        </form>
+      </ion-card>
+    </ion-fab-list>
+  </ion-fab>

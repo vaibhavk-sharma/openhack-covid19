@@ -1,0 +1,69 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Add Items</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+<form [formGroup]="addItemsForm" (ngSubmit)="addNewItem()" novalidate>
+    <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input mode="ios" formControlName="name" type="text"></ion-input>
+    </ion-item>
+    <span
+        *ngIf="!addItemsForm.controls.name.pristine && addItemsForm.controls.name.errors && addItemsForm.controls.name.errors.required"
+        class="error-message">
+        <p>Name is required.</p>
+    </span>
+    <ion-item>
+        <ion-label position="floating">Quantity</ion-label>
+        <ion-input mode="ios" formControlName="quantity" type="number"></ion-input>
+    </ion-item>
+    <span
+        *ngIf="!addItemsForm.controls.quantity.pristine && addItemsForm.controls.quantity.errors && addItemsForm.controls.quantity.required"
+        class="error-message">
+        <p>Quantity is required.</p>
+    </span>
+    <ion-radio-group formControlName="baseUnit" value="Kilos">
+        <ion-list-header>
+          <ion-label>BaseUnit</ion-label>
+        </ion-list-header>
+
+        <ion-item lines="none">
+          <ion-label>Kilos</ion-label>
+          <ion-radio mode="ios" slot="start" value="Kilos"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>Litres</ion-label>
+          <ion-radio mode="ios" slot="start" value="Litres"></ion-radio>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>Numbers</ion-label>
+          <ion-radio mode="ios" slot="start" value="Numbers"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    <span
+        *ngIf="!addItemsForm.controls.baseUnit.pristine && addItemsForm.controls.baseUnit.errors && addItemsForm.controls.baseUnit.errors.required"
+        class="error-message">
+        <p>BaseUnit is required.</p>
+    </span>
+    <ion-item>
+        <ion-label position="floating">PricePerUnit</ion-label>
+        <ion-input mode="ios" formControlName="pricePerUnit" type="number"></ion-input>
+    </ion-item>
+    <span
+        *ngIf="!addItemsForm.controls.pricePerUnit.pristine && addItemsForm.controls.pricePerUnit.errors && addItemsForm.controls.pricePerUnit.errors.required"
+        class="error-message">
+        <p>PricePerUnit is required.</p>
+    </span>
+    
+    <ion-row class="btn--register">
+        <ion-col>
+            <ion-button expand="full" type="submit" Size="default" class="btn--bottom"
+                [disabled]="!addItemsForm.valid">
+                <p>Add New Item</p>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</form>
+</ion-content>
