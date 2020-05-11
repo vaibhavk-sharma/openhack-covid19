@@ -20,8 +20,9 @@
     </ion-item>
       <ion-item>
         <ion-select #status interface="action-sheet" [(ngModel)]="orderStatus" (ionChange)="selectOrderStatus()">
+          <ion-select-option value="outForDelivery">Out For Delivery Orders</ion-select-option>
           <ion-select-option value="confirmed">Confirmed Orders</ion-select-option>
-          <ion-select-option value="notconfirmed">Not Confirmed Orders</ion-select-option>
+          <ion-select-option value="notconfirmed">Not Confirmed Orders</ion-select-option>          
         </ion-select>
       </ion-item>
     </ion-list>
@@ -86,6 +87,38 @@
               </span>
               <span (click)="rejectOrderChange(order,i)">
                 Reject Order
+              </span>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-item>
+      </ion-card>
+    </div>
+    </ion-list>
+  </div>
+  <div *ngIf="status.value === 'outForDelivery' && outForDeliveryOrders && outForDeliveryOrders && outForDeliveryOrders.length == 0">
+    <ion-card>
+      <ion-item>
+        <ion-toolbar slot="start">
+          <ion-title class="list-items">You don't have any Out for Delivery orders.</ion-title>
+        </ion-toolbar>
+      </ion-item>
+    </ion-card>
+  </div>
+  <div *ngIf="status.value === 'outForDelivery' && outForDeliveryOrders && outForDeliveryOrders && outForDeliveryOrders.length > 0">
+    <ion-list style="padding-left: 10px;">
+      <div *ngFor="let order of outForDeliveryOrders; let i = index;">
+      <ion-title class="list-header">Order Id: {{order._id}}</ion-title>
+      <ion-card>
+        <ion-item>
+          <ion-toolbar slot="start">            
+            <ion-title class="list-item-totalBill">Bill Amount: {{order.totalBill}}</ion-title>
+          </ion-toolbar>
+        </ion-item>
+        <ion-item>          
+          <ion-toolbar slot="start">
+            <ion-buttons slot="start" class="select-buttons">
+              <span (click)="receivedOrder(order,i)">
+                Accept Delivery
               </span>
             </ion-buttons>
           </ion-toolbar>

@@ -78,5 +78,9 @@ export class HomeTabPage {
   order(){
     this.router.navigateByUrl('user-dashboard/cart')
   }
+
+  myOrders(){
+    this.router.navigateByUrl('user-dashboard/myorders');
+  }
 }
 
