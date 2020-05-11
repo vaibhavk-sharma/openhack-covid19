@@ -31,6 +31,7 @@ export class OrderStatus {
     public static NotConfirmed = 'notconfirmed';
     public static PaymentInitiated = 'paymentinitiated';
     public static PaymentVerified = 'paymentverified';
+    public static OutForDelivery = 'outForDelivery';
     public static Cancelled = 'cancelled';
     public static Completed = 'completed';
 }
