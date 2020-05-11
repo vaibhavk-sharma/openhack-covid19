@@ -65,18 +65,18 @@ export class HomePage implements OnInit {
 
   doGoogleLogin() {
 
-    // this.googlePlus.login({
-    //   'scopes': '', // optional - space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
-    //   'webClientId': '596708425506-hb5amal386g9t7t10mght08hovkeo5m0.apps.googleusercontent.com', // optional - clientId of your Web application from Credentials settings of your project - On Android, this MUST be included to get an idToken. On iOS, it is not required.
-    //   'offline': true, // Optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
-    // })
-    //  .then(user => {
-    //let googleUser = user;
-    let googleUser = {
-      name: "George Maharis",
-      email: "George_Maharis@infosys.com",
-      idToken: "hb5amal386g9t7t10mght08hovkeo5m0"
-    };
+    this.googlePlus.login({
+      'scopes': '', // optional - space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
+      'webClientId': '596708425506-hb5amal386g9t7t10mght08hovkeo5m0.apps.googleusercontent.com', // optional - clientId of your Web application from Credentials settings of your project - On Android, this MUST be included to get an idToken. On iOS, it is not required.
+      'offline': true, // Optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
+    })
+     .then(user => {
+    let googleUser = user;
+    // let googleUser = {
+    //   name: "George Maharis",
+    //   email: "George_Maharis@infosys.com",
+    //   idToken: "hb5amal386g9t7t10mght08hovkeo5m0"
+    // };
 
     this.userService.findUserbyEmailId(googleUser.email).subscribe(
       (data) => {
@@ -103,9 +103,9 @@ export class HomePage implements OnInit {
         console.log("ERROR OCCURED", err.message, JSON.stringify(err, null, '\t'));
       }
     )
-    // }, err => {
-    //   console.log(err);
-    // })
+    }, err => {
+      console.log(err);
+    })
   }
 
   nativeStorageUpdate(user: any) {
