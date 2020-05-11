@@ -22,6 +22,7 @@ export class ApiRoutes {
 
 function getLocalDomain(){
     return "http://localhost:8080/";
+    //return "http://digicomm-api.eu-gb.cf.appdomain.cloud/";
 }
 
 export class OrderStatus {
