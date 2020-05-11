@@ -1,4 +1,4 @@
-<ion-content fullscreen class="ion-padding">
+<ion-content fullscreen class="ion-padding" class="background">
   <ion-slides spaceBetween="-30" [options]="slideOpts">
     <!-- ION SLIDE 1 -->
     <ion-slide>
@@ -73,14 +73,14 @@
 <div>
   <!-- <div> -->
   <!-- A button for registering new user -->        
-  <ion-button expand="block" fill="outline" color="danger">
+  <ion-button expand="block"  color=danger>
     Get started
   </ion-button>
 
-  <br/>
+  
 
   <!-- A button for login  alredy registered user -->
-  <ion-button expand="block" color="success" (click)="doGoogleLogin()">
+  <ion-button expand="block" color="tertiary" (click)="doGoogleLogin()">
     <ion-icon name="person-add-sharp"></ion-icon>
     &nbsp;
     Sign in with Google

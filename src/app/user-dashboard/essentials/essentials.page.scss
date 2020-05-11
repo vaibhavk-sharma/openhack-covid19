@@ -1,0 +1,61 @@
+ion-tab-button{
+    max-width: 50%;
+    background-color:#263238;
+}
+
+ion-label{
+    color: white;
+}
+
+ion-icon{
+    font-size: 30px;
+}
+
+ion-title{
+    text-transform: capitalize;
+    padding-left: 0px;
+    & span{
+        font-size: 14px;
+    }
+}
+
+ion-toolbar{
+    --background: #263238;
+    --color:white;
+}
+
+.icon-first-name{
+    font-size: 12px;
+}
+
+ion-icon{
+    color:white
+}
+
+.menu-items{
+    margin-top:2px;
+    font-size: 14px;
+    & ion-icon {
+        font-size: 18px;
+        margin-right:10px;
+        margin-right:10px;
+    }
+
+    & ion-label{
+        padding-left:0px;
+    }
+}
+
+ion-card{
+    border-radius: 10px 10px 0px 0px;
+}
+
+.essentials_bg{
+    --background: url(../../../assets/Images/hands.jpg) 0 0/100% 100% no-repeat;
+
+}
+
+.item_bg{
+    --background: url(../../../assets/Images/wall.jpg) 0 0/100% 100% no-repeat;
+
+}

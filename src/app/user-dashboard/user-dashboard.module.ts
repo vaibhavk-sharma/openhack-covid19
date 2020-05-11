@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -8,14 +8,18 @@ import { UserDashboardPageRoutingModule } from './user-dashboard-routing.module'
 
 import { UserDashboardPage } from './user-dashboard.page';
 import { HomeTabPage } from './home/home.page';
+import { EssentialsPage } from './essentials/essentials.page';
+import { ForumPage } from './forum/forum.page';
+import { CartPage } from './cart/cart.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UserDashboardPageRoutingModule
+    UserDashboardPageRoutingModule,
+    ReactiveFormsModule
   ],
-  declarations: [UserDashboardPage, HomeTabPage]
+  declarations: [UserDashboardPage, HomeTabPage,EssentialsPage,ForumPage,CartPage]
 })
 export class UserDashboardPageModule {}

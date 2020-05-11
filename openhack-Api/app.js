@@ -13,8 +13,9 @@ dotenv.config({ path: 'developmet.env' });
 const apiRoutes = require('./api');
 const apiUserRoutes = require('./api/user');
 const apiCommunityRoutes = require('./api/community');
-const apiSupplierRoutes = require('./api/supplier');
 const apiOrderRoutes = require('./api/order');
+const apiForumRoutes = require('./api/forum');
+const apiSupplierRoutes = require('./api/supplier');
 
 /**
  * Create Express server.
@@ -50,6 +51,12 @@ app.post('/api/order/updateOrderStatus', apiOrderRoutes.UpdateOrderStatus);
 app.post('/api/supplier/GetSupplierInfoBySupplierId',apiSupplierRoutes.GetSupplierInfoBySupplierId);
 app.post('/api/supplier/SaveSupplierItemInfo',apiSupplierRoutes.SaveSupplierItemInfo);
 
+app.post('/api/forum/createPost',apiForumRoutes.CreatePost);
+app.post('/api/forum/viewAllPost',apiForumRoutes.ViewAllPost);
+app.post('/api/forum/deletePost',apiForumRoutes.DeletePostByAdmin);
+app.post('/api/order/getSupplier',apiOrderRoutes.GetSupplier);
+app.post('/api/order/getSupplierItems',apiOrderRoutes.GetSupplierItems);
+app.post('/api/order/createOrder',apiOrderRoutes.CreateOrder);
 app.get('*', apiRoutes.index);
 /**
  * Error Handler.

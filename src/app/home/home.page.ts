@@ -58,7 +58,8 @@ export class HomePage implements OnInit {
 
   //Slider in homepage
   slideOpts = {
-    initialSlide: 0
+    initialSlide: 0,
+    autoplay:true
   };
   // admin()
   // {
