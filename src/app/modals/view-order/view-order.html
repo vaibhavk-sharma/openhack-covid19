@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title class="header-title">View Order Info</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div *ngIf="order && order.items && order.items.length > 0">
+        <ion-card *ngFor="let item of order.items;let i = index;">
+            <ion-item>
+                <ion-toolbar slot="start">
+                    <ion-title class="list-items">Name: {{item.name}}</ion-title>
+                    <ion-title class="list-items">Quantity: {{item.quantity}}</ion-title>
+                    <ion-title class="list-items">BaseUnit: {{item.baseUnit}}</ion-title>                    
+                </ion-toolbar>
+            </ion-item>
+        </ion-card>
+        <ion-item style="margin-top:25px">
+            <ion-toolbar slot="start">
+                <ion-title class="list-items">Bill Amount: {{order.totalBill}}</ion-title>
+                <ion-title class="list-items">Order Status: {{order.status}}</ion-title>
+            </ion-toolbar>
+        </ion-item>
+    </div>
+</ion-content>

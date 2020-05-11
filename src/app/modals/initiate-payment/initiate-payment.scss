@@ -1,0 +1,7 @@
+.error-message{
+    font-size: 15px;
+    color: red;
+     & > p{
+        padding-left:15px;
+    }
+}

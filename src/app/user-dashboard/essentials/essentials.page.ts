@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { menuController } from '@ionic/core';
 import { OrderService } from 'src/shared/services/order.service';
 import { CartPage } from 'src/app/user-dashboard/cart/cart.page'
 import { Order,Items } from 'src/shared/models/order.model';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-essentials',
   templateUrl: './essentials.page.html',
   styleUrls: ['./essentials.page.scss'],
 })
-export class EssentialsPage implements OnInit {
+export class EssentialsPage {
 
   supplierList:any;
   order:Order;
@@ -22,11 +23,12 @@ export class EssentialsPage implements OnInit {
   cartItem : any;
   constructor(private router: Router, 
     private storage: Storage,
+    private toastController: ToastController,
     private orderService: OrderService) {
       this.flag=false;
      }
 
-  ngOnInit() {
+   ionViewWillEnter() {
     this.storage.get('local_community_user').then(data => {
       if (data != null) {
         this.loggedInUser = data;
@@ -115,6 +117,7 @@ export class EssentialsPage implements OnInit {
 
 //Opening Modal to set the quantity
 addToCart(selectedItem){
+  this.presentToast();
   let item = new Items();
   item.name = selectedItem.name;
   item.baseUnit = selectedItem.baseUnit;
@@ -126,6 +129,15 @@ addToCart(selectedItem){
 }
 viewCart(){
   this.router.navigateByUrl('/user-dashboard/cart');
+}
+
+async presentToast() {
+  const toast = await this.toastController.create({
+    message: 'Item is added to the cart.',
+    duration: 1000,
+    position: 'middle'
+  });
+  toast.present();
 }
 
 

@@ -77,8 +77,8 @@ export class HomePage implements OnInit {
     //  .then(user => {
     //    this.user = user;
     this.user = {
-      name: "Tony Starks",
-      email: "TonyStarkz@gmail.com",
+      name: "George Maharis",
+      email: "George_Maharis@infosys.com",
       token: "hb5amal386g9t7t10mght08hovkeo5m0"
     };
 

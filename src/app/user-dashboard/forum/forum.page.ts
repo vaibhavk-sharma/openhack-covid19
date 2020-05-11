@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { forum } from 'src/shared/models/forum.model';
 import { FormGroup, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
@@ -12,11 +12,14 @@ import { menuController } from '@ionic/core';
   templateUrl: './forum.page.html',
   styleUrls: ['./forum.page.scss'],
 })
-export class ForumPage implements OnInit {
+export class ForumPage {
 
   forumInput: forum;
   loggedInUser: any;
-  postForm: FormGroup;
+  postForm: FormGroup = this.formBuilder.group({
+    title: ['', [Validators.required, Validators.maxLength(30)]],
+    content: ['', [Validators.required, Validators.maxLength(200)]]
+  });;
   ForumList: forum[];
   contentId: string;
   latestrev: string;
@@ -34,7 +37,7 @@ export class ForumPage implements OnInit {
 
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.storage.get('local_community_user').then(data => {
       if (data != null) {
         this.loggedInUser = data;
@@ -45,12 +48,6 @@ export class ForumPage implements OnInit {
       .catch(err => {
         console.log(err.message);
       });
-    this.postForm = this.formBuilder.group({
-      title: ['', [Validators.required, Validators.maxLength(30)]],
-      content: ['', [Validators.required, Validators.maxLength(200)]]
-    });
-
-
   }
 
 

@@ -1,0 +1,97 @@
+<ion-content class="page-content">
+  <ion-toolbar class="title-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false" (click)="openMenu()"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button>
+        <ion-icon slot="icon-only" md="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  
+    <ion-title><span>My Orders</span></ion-title>
+  </ion-toolbar>
+  <div>
+    <ion-list>
+      <ion-item>
+      <ion-label>
+        Filter By Status
+      </ion-label>
+    </ion-item>
+      <ion-item>
+        <ion-select #status interface="action-sheet" [(ngModel)]="orderStatus" (ionChange)="selectOrderStatus()">
+          <ion-select-option value="confirmed">Confirmed Orders</ion-select-option>
+          <ion-select-option value="notconfirmed">Not Confirmed Orders</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="status.value === 'confirmed' && confirmedOrders && confirmedOrders && confirmedOrders.length == 0">
+    <ion-card>
+      <ion-item>
+        <ion-toolbar slot="start">
+          <ion-title class="list-items">You don't have any confirmed orders.</ion-title>
+        </ion-toolbar>
+      </ion-item>
+    </ion-card>
+  </div>
+  <div *ngIf="status.value === 'confirmed' && confirmedOrders && confirmedOrders && confirmedOrders.length > 0">
+    <ion-list  style="padding-left: 10px;">
+      <div *ngFor="let order of confirmedOrders; let i = index;">
+      <ion-label class="list-header">Order Id: {{order._id}}</ion-label>
+      <ion-card class="card">
+        <ion-item>
+          <ion-toolbar slot="start">            
+            <ion-title class="list-item-totalBill"><b>Bill Amount:</b> {{order.totalBill}}</ion-title>
+          </ion-toolbar>
+          <ion-toolbar slot="start">
+            <ion-buttons slot="end" class="select-buttons">
+              <span (click)="initiatepayment(order,i)">
+                Initiate Payment
+              </span>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-item>
+      </ion-card>
+      </div>
+    </ion-list>
+  </div>
+  <div *ngIf="status.value === 'notconfirmed' && notConfirmedOrders && notConfirmedOrders && notConfirmedOrders.length == 0">
+    <ion-card>
+      <ion-item>
+        <ion-toolbar slot="start">
+          <ion-title class="list-items">You don't have any not confirmed orders.</ion-title>
+        </ion-toolbar>
+      </ion-item>
+    </ion-card>
+  </div>
+  <div *ngIf="status.value === 'notconfirmed' && notConfirmedOrders && notConfirmedOrders && notConfirmedOrders.length > 0">
+    <ion-list style="padding-left: 10px;">
+      <div *ngFor="let order of notConfirmedOrders; let i = index;">
+      <ion-title class="list-header">Order Id: {{order._id}}</ion-title>
+      <ion-card>
+        <ion-item>
+          <ion-toolbar slot="start">            
+            <ion-title class="list-item-totalBill">Bill Amount: {{order.totalBill}}</ion-title>
+          </ion-toolbar>
+        </ion-item>
+        <ion-item>          
+          <ion-toolbar slot="start">
+            <ion-buttons slot="start" class="select-buttons">
+              <span (click)="viewOrderInfo(order,i)">
+                View Order
+              </span>
+              <span (click)="acceptOrderChange(order,i)">
+                Accept Order
+              </span>
+              <span (click)="rejectOrderChange(order,i)">
+                Reject Order
+              </span>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-item>
+      </ion-card>
+    </div>
+    </ion-list>
+  </div>
+</ion-content>

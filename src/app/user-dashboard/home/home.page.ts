@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -9,7 +9,7 @@ import { menuController } from '@ionic/core';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomeTabPage implements OnInit {
+export class HomeTabPage {
 
   
   loggedInUser: any;
@@ -20,7 +20,7 @@ export class HomeTabPage implements OnInit {
       
      }
 
-  ngOnInit() {
+    ionViewWillEnter() {
   
     this.storage.get('local_community_user').then(data => {
       if (data != null) {

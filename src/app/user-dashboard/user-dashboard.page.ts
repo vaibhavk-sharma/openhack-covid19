@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 // import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
@@ -9,7 +9,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: './user-dashboard.page.html',
   styleUrls: ['./user-dashboard.page.scss'],
 })
-export class UserDashboardPage implements OnInit {
+export class UserDashboardPage {
 
   menu:boolean;
   loggedInUser: any;
@@ -19,7 +19,7 @@ export class UserDashboardPage implements OnInit {
     this.menu=false;
    }
 
-  ngOnInit() {
+   ionViewWillEnter() {
     this.storage.get('local_community_user').then(data => {
       if(data!=null)
       {

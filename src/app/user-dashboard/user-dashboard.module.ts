@@ -11,6 +11,9 @@ import { HomeTabPage } from './home/home.page';
 import { EssentialsPage } from './essentials/essentials.page';
 import { ForumPage } from './forum/forum.page';
 import { CartPage } from './cart/cart.page';
+import { YourOrdersPage } from './your-orders/your-orders.page';
+import { InitiatePaymentModal } from '../modals/initiate-payment/initiate-payment.modal';
+import { ViewOrderModal } from '../modals/view-order/view-order.modal';
 
 @NgModule({
   imports: [
@@ -20,6 +23,19 @@ import { CartPage } from './cart/cart.page';
     UserDashboardPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [UserDashboardPage, HomeTabPage,EssentialsPage,ForumPage,CartPage]
+  declarations: [ 
+    UserDashboardPage, 
+    HomeTabPage,
+    EssentialsPage,
+    ForumPage,
+    CartPage, 
+    YourOrdersPage, 
+    InitiatePaymentModal, 
+    ViewOrderModal
+  ],
+  entryComponents: [
+    InitiatePaymentModal, 
+    ViewOrderModal
+  ]
 })
 export class UserDashboardPageModule {}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Order, Items } from 'src/shared/models/order.model';
 import { OrderService } from 'src/shared/services/order.service';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './cart.page.html',
   styleUrls: ['./cart.page.scss'],
 })
-export class CartPage implements OnInit {
+export class CartPage {
 
   private order: Order;
   static items: Items[] = [];
@@ -27,7 +27,7 @@ export class CartPage implements OnInit {
     private storage: Storage, private orderService: OrderService) {
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.itemList = CartPage.items;
     this.supplier_Id = CartPage.supplierId;
 

@@ -6,10 +6,11 @@ import { HomeTabPage } from './home/home.page';
 import { EssentialsPage } from './essentials/essentials.page';
 import { ForumPage } from './forum/forum.page';
 import { CartPage } from './cart/cart.page';
+import { YourOrdersPage } from './your-orders/your-orders.page';
 
 const routes: Routes = [
   {
-    path: 'supplier-dashboard',
+    path: '',
     component: UserDashboardPage,
     children: [
       {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'forum',
         component: ForumPage
+      },
+      {
+        path: 'yourorders',
+        component: YourOrdersPage
       }
     ]
   }
