@@ -54,9 +54,20 @@ exports.GetAllUsers = (req, res) => {
     let communityId = req.body.communityId;
     let selector = {}
     if(communityId) {
-        selector['isAdmin'] = false
-        selector['isUserVerified'] = false
-        selector['communityId'] = communityId
+        selector['isAdmin'] = false;
+        selector['isUserVerified'] = false;
+        selector['$or'] =  [
+            {
+                "communityId": communityId
+             },
+             {
+                "communityId": {
+                    "$elemMatch":{
+                        "$eq":communityId
+                    }
+                }
+             }
+        ];
     }
     // console.log(communityId)
     let db = db_utlity.getDbInstance(db_constants["RESIDENTDB-USERS"]);

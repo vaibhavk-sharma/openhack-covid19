@@ -28,7 +28,10 @@ export class SupplierHomePage {
   ionViewWillEnter() {
     this.storage.get('local_community_user').then(data => {
       if (data != null) {
-        this.loggedInUser = data;        
+        this.loggedInUser = data;
+        if(this.loggedInUser && !this.loggedInUser.isUserVerified && !this.loggedInUser.isAdmin){
+          this.showUserVerifiedAlert();
+        }     
         this.getInitiatedOrders();
       }
     }).catch(err => {
@@ -52,6 +55,23 @@ export class SupplierHomePage {
       }    
     },
     (err)=>{})
+  }
+
+  async showUserVerifiedAlert() {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      message: 'You are not verified yet. Please try again later.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+    
+    this.logout();
+  }
+
+  logout() {
+    this.storage.clear();
+    this.router.navigateByUrl('home')
   }
 
 }

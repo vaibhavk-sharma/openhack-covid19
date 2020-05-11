@@ -15,11 +15,27 @@ import { CommunityRegisterModal } from '../modals/community-register/community-r
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
-export class RegisterPage implements OnInit {
+export class RegisterPage {
   user: any;
   isSubmitted: boolean;
   showSpinner: boolean;
-  registerForm: FormGroup;
+  registerForm: FormGroup =  this.formBuilder.group({
+    firstName: ['', [Validators.required]],
+    lastName: ['', []],
+    address: this.formBuilder.group({
+      street: [''],
+      city: [''],
+      state: [''],
+      pinCode: ['', [Validators.required]]
+    }),
+    phoneNumber: ['', []],
+    type: ['Resident', []],
+    residentCommunity: ['', []],
+    supplierCommunity: ['', []]
+  }, {
+    validator: this.validateCommunity('type', 'residentCommunity', 'supplierCommunity'),
+  });
+
   subType: FormControl = new FormControl('Grocery');
   communityList: Community[] = [];
   isNewCommunity: boolean;
@@ -33,30 +49,13 @@ export class RegisterPage implements OnInit {
     public popOverController: PopoverController
   ) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.storage.get('local_community_user').then(data => {
       this.user = data;
     })
     .catch(err => {
       console.log(err.message);
     });
-    this.registerForm = this.formBuilder.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', []],
-      address: this.formBuilder.group({
-        street: [''],
-        city: [''],
-        state: [''],
-        pinCode: ['', [Validators.required]]
-      }),
-      phoneNumber: ['', []],
-      type: ['Resident', []],
-      residentCommunity: ['', []],
-      supplierCommunity: ['', []]
-    }, {
-      validator: this.validateCommunity('type', 'residentCommunity', 'supplierCommunity'),
-    }
-    )
 
     this.registerForm.controls['type'].valueChanges
       .subscribe(value => {

@@ -52,6 +52,7 @@ export class HomeTabPage {
   }
 
   logout() {
+    this.storage.clear();
     this.router.navigateByUrl('home')
   }
 

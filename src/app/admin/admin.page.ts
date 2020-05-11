@@ -11,7 +11,7 @@ import { toastController } from '@ionic/core';
   templateUrl: './admin.page.html',
   styleUrls: ['./admin.page.scss'],
 })
-export class AdminPage implements OnInit {
+export class AdminPage {
 
   admin: any;
   unverifiedUserList : any;
@@ -27,7 +27,7 @@ export class AdminPage implements OnInit {
       this.flag=false;
      }
 
-  ngOnInit() {
+    ionViewWillEnter() {
     //GOT data from local_community_user to store in user
     this.storage.get('local_community_user').then(data => {
       if(data!=null){

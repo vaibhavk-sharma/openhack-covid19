@@ -57,10 +57,10 @@ exports.CreateOrder = (req,res) => {
     let db = db_utlity.getDbInstance(db_constants["ORDERDB"]);
     
     let order =  {
-        items:req.body.items,        
+        items:req.body.order.items,        
         status:'initiated',
-        residentId:req.body.residentId,
-        supplierId:req.body.supplierId,
+        residentId:req.body.order.residentId,
+        supplierId:req.body.order.supplierId,
         totalBill:0
     };
     db.insert(order, (err, result) => {

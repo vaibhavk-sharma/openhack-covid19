@@ -5,10 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './services.page.html',
   styleUrls: ['./services.page.scss'],
 })
-export class SupplierServicesPage implements OnInit {
+export class SupplierServicesPage {
 
   constructor() { }
 
-  ngOnInit() {}
+  ionViewWillEnter() {}
 
 }
