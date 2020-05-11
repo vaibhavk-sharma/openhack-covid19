@@ -63,6 +63,7 @@ export class ForumPage {
   }
 
   logout() {
+    this.storage.clear();
     this.router.navigateByUrl('home')
   }
 
